@@ -11,20 +11,20 @@ class MetroRetriever {
     private val estimate: mGrabEst
 
     init {
-        val retrofit = Retrofit.Builder.baseUrl("http://api.metro.net/agencies/lametro-rail")   //base URL that all Metro calls will use
-                .addCoverterFactroy(GsonConverterFactory.create())                              //Appending the Gson - JSON parser
+        val retrofit = Retrofit.Builder().baseUrl("http://api.metro.net/agencies/lametro-rail")   //base URL that all Metro calls will use
+                .addConverterFactory(GsonConverterFactory.create())                              //Appending the Gson - JSON parser
                 .build()
         estimate = retrofit.create(mGrabEst::class.java)
 
     }
 
     fun getEstimate(callback: Callback<Estimate>){      //Callback Function when receiving a train estimate request from user
-        val call = estimate.getEstimate()
+        val call = estimate.getEst()
         call.enqueue(callback)
     }
 
-    fun getLines(callback: Callback<Estimate>){            //Call back when receiving a Line request from users
-        val call = estimate.getLines()
-        call.enqueue(callback)
-    }
+//    fun getLines(callback: Callback<Estimate>){            //Call back when receiving a Line request from users
+//        val call = estimate.getLines()
+//        call.enqueue(callback)
+//    }
 }
