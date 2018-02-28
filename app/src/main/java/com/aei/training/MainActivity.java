@@ -8,7 +8,10 @@ import android.util.Log;
 
 import com.aei.training.MetroAPI.MetroRetriever;
 import com.aei.training.Objects.Estimate;
+import com.aei.training.Objects.EstimateList;
 import com.aei.training.Objects.TrainLine;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -25,14 +28,14 @@ public class MainActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         metroRetriever= new MetroRetriever();
-        Callback callback = new Callback<Estimate>() {
+        Callback callback = new Callback<EstimateList>() {
             @Override
-            public void onResponse(Call call, Response response) {
-                Log.d("CallBack", " response is " + response);
+            public void onResponse(Call<EstimateList>call, Response<EstimateList>response) {
+                Log.d("CallBack", " response is " + response.body().getEstimates());
             }
 
             @Override
-            public void onFailure(Call call, Throwable t) {
+            public void onFailure(Call<EstimateList>call, Throwable t) {
                 Log.d("CallBack", " Throwable is " +t);
             }
         };
