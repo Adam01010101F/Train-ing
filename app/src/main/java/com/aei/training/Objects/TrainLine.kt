@@ -1,3 +1,3 @@
 package com.aei.training.Objectsdata 
-
-class TrainLine (val id : Int, val display_name : string )
+import java.io.Serializable;
+class TrainLine (val id : Int, val display_name : string ): Serializable {}
