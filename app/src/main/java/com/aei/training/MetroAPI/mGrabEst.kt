@@ -14,3 +14,9 @@ interface mGrabEst{
     @GET("/stops/80101/predictions/")       //Eventually change 80101 to $stop_id
     fun getEst() : Call<Estimate>
 }
+
+//fun is functioninterface getLine
+interface getLine 
+{    @GET("agencies/lametro-rail")   
+     fun getEst() : Call<TrainLines>
+}
