@@ -4,16 +4,39 @@ package com.aei.training;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+
+import com.aei.training.MetroAPI.MetroRetriever;
+import com.aei.training.Objects.Estimate;
+import com.aei.training.Objects.TrainLine;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class MainActivity extends AppCompatActivity {
 
     private CardDisplayLayout cardDisplayLayout;
+    private MetroRetriever metroRetriever;
 
     protected void onCreate(Bundle savedInstanceState) {
 
 
         super.onCreate(savedInstanceState);
+        metroRetriever= new MetroRetriever();
+        Callback callback = new Callback<Estimate>() {
+            @Override
+            public void onResponse(Call call, Response response) {
+                Log.d("CallBack", " response is " + response);
+            }
+
+            @Override
+            public void onFailure(Call call, Throwable t) {
+                Log.d("CallBack", " Throwable is " +t);
+            }
+        };
+       metroRetriever.getEstimate(callback);
 
         //create a new card layout
         cardDisplayLayout = new CardDisplayLayout(this, new Intent(MainActivity.this, lineStopsActivity.class));
