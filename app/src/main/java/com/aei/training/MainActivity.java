@@ -52,15 +52,15 @@ public class MainActivity extends AppCompatActivity {
     //Create a card
     private void createTextView(String text, int lineColor){
 
-        //Drawable drawable = ResourcesCompat.getDrawable(getResources(), R.drawable.square, null);
-       // drawable.setColorFilter(lineColor, PorterDuff.Mode.MULTIPLY);
+        Drawable drawable = ResourcesCompat.getDrawable(getResources(), R.drawable.square, null);
+        drawable.setColorFilter(lineColor, PorterDuff.Mode.MULTIPLY);
         TextView textView = new TextView(this);
         textView.setLayoutParams(params);
         textView.setText(text);
         textView.setPadding(20,30,0,30);
-        //textView.setBackgroundResource(R.drawable.card_shadow);
+        textView.setBackgroundResource(R.drawable.card_shadow);
         textView.setTypeface(Typeface.create("sans-serif-medium",Typeface.NORMAL));
-       // textView.setCompoundDrawablesWithIntrinsicBounds(null, null, drawable, null);
+        textView.setCompoundDrawablesWithIntrinsicBounds(null, null, drawable, null);
         textView.setTextColor(0xff4f4f4f);
         textView.setTextSize(30);
         linearLayout.addView(textView);
