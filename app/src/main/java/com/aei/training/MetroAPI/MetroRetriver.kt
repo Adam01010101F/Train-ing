@@ -1,7 +1,7 @@
 package com.aei.training.MetroAPI
 
 import com.aei.training.Objects.EstimateList
-import com.aei.training.Objects.StopList
+
 import com.aei.training.Objects.TrainLine
 import retrofit2.Callback
 import retrofit2.Retrofit

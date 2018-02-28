@@ -1,7 +1,7 @@
 package com.aei.training.MetroAPI
 
 import com.aei.training.Objects.EstimateList
-import com.aei.training.Objects.StopList
+
 import com.aei.training.Objects.TrainLine
 import retrofit2.Call
 import retrofit2.http.GET
@@ -23,8 +23,3 @@ interface mGetLine {
     fun getLine() : Call<TrainLine>
 }
 
-//TODO: FIX UrL && rm hardcode
-interface mGetStops{
-    @GET("agencies/lametro-rail/routes/801/sequence")
-    fun getStops() : Call<StopList>
-}
