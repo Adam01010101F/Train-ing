@@ -1,6 +1,7 @@
 package com.aei.training.MetroAPI
 
-import com.aei.training.Objects.Estimate
+import com.aei.training.Objects.EstimateList
+import com.aei.training.Objects.StopList
 import com.aei.training.Objects.TrainLine
 import retrofit2.Callback
 import retrofit2.Retrofit
@@ -11,6 +12,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 class MetroRetriever {
     private val estimate: mGrabEst
     private val lines: mGetLine
+    //private val stop: mGetStops
 
     init {
         val retrofit = Retrofit.Builder().baseUrl("http://api.metro.net/")   //base URL that all Metro calls will use
@@ -21,7 +23,7 @@ class MetroRetriever {
 
     }
 
-    fun getEstimate(callback: Callback<Estimate>){      //Callback Function when receiving a train estimate request from user
+    fun getEstimate(callback: Callback<EstimateList>){      //Callback Function when receiving a train estimate request from user
         val call = estimate.getEst()
         call.enqueue(callback)
     }
@@ -32,4 +34,9 @@ class MetroRetriever {
         val call = lines.getLine()
         call.enqueue(callback)
     }
+
+//    fun getStops(callback: Callback<StopList>){
+//        val call = stops.getStops()
+//        call.enqueue(callback)
+//    }
 }
