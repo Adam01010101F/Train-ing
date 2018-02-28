@@ -9,12 +9,14 @@ import retrofit2.converter.gson.GsonConverterFactory
  */
 class MetroRetriever {
     private val estimate: mGrabEst
+    private val lines: getLine
 
     init {
-        val retrofit = Retrofit.Builder().baseUrl("http://api.metro.net/agencies/lametro-rail")   //base URL that all Metro calls will use
+        val retrofit = Retrofit.Builder().baseUrl("http://api.metro.net/")   //base URL that all Metro calls will use
                 .addConverterFactory(GsonConverterFactory.create())                              //Appending the Gson - JSON parser
                 .build()
         estimate = retrofit.create(mGrabEst::class.java)
+        lines = retrofit.create(getLine::class.java)
 
     }
 
@@ -22,9 +24,11 @@ class MetroRetriever {
         val call = estimate.getEst()
         call.enqueue(callback)
     }
-
-//    fun getLines(callback: Callback<Estimate>){            //Call back when receiving a Line request from users
-//        val call = estimate.getLines()
-//        call.enqueue(callback)
-//    }
+//getLine is an interface
+//TrainLine is an object
+//lines is a value
+    fun getLine(callback: Callback<TrainLine>){            //Call back when receiving a Line request from users
+          val call = lines.getLine()
+          call.enqueue(callback)
+    }
 }
