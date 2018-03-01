@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(Call<TrainList> call, Response<TrainList>response) {
 
                 for(TrainLine trainLine: response.body().getTrainLine()){
-                    cardDisplayLayout.createCardTextView(trainLine.getDisplay_name(),0xff004dac, true,trainLine.getId());
+                    cardDisplayLayout.createCardTextView(trainLine.getDisplay_name(),0xffffffff, true,trainLine.getId());
                 }
             }
 
