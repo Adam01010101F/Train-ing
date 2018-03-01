@@ -4,16 +4,9 @@ package com.aei.training;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
-
 import com.aei.training.MetroAPI.MetroRetriever;
-import com.aei.training.Objects.Estimate;
-import com.aei.training.Objects.EstimateList;
 import com.aei.training.Objects.TrainLine;
 import com.aei.training.Objects.TrainList;
-
-import java.util.List;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

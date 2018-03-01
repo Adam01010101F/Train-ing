@@ -3,7 +3,6 @@ package com.aei.training.MetroAPI
 import com.aei.training.Objects.EstimateList
 import com.aei.training.Objects.StopList
 
-import com.aei.training.Objects.TrainLine
 import com.aei.training.Objects.TrainList
 import retrofit2.Callback
 import retrofit2.Retrofit
@@ -39,16 +38,9 @@ class MetroRetriever {
     }
 
 
-    //getLine is an interface
-//TrainLine is an object
-//lines is a value
     fun getLine(callback: Callback<TrainList>){            //Call back when receiving a Line request from users
         val call = lines.getLine()
         call.enqueue(callback)
     }
 
-//    fun getStops(callback: Callback<StopList>){
-//        val call = stops.getStops()
-//        call.enqueue(callback)
-//    }
 }

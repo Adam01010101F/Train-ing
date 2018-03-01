@@ -3,13 +3,9 @@ package com.aei.training;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
-
 import com.aei.training.MetroAPI.MetroRetriever;
 import com.aei.training.Objects.Stop;
-import com.aei.training.Objects.TrainLine;
 import com.aei.training.Objects.StopList;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
