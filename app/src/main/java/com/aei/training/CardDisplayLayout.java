@@ -37,7 +37,7 @@ public class CardDisplayLayout {
         this.appCompatActivity.setContentView(scrollView);
     }
 
-    public void createCardTextView(final String text, int lineColor, boolean clickable){
+    public void createCardTextView(String text, int lineColor, boolean clickable,final String id){
 
         Drawable drawable = ResourcesCompat.getDrawable(this.appCompatActivity.getResources(), R.drawable.square, null);
         drawable.setColorFilter(lineColor, PorterDuff.Mode.MULTIPLY);
@@ -49,7 +49,7 @@ public class CardDisplayLayout {
         textView.setTypeface(Typeface.create("sans-serif-medium",Typeface.NORMAL));
         textView.setCompoundDrawablesWithIntrinsicBounds(null, null, drawable, null);
         textView.setTextColor(0xff4f4f4f);
-        textView.setTextSize(30);
+        textView.setTextSize(25);
         textView.setClickable(clickable);
         if(clickable){
 
@@ -58,7 +58,7 @@ public class CardDisplayLayout {
                 public void onClick(View v) {
                     // text gets passed through to the new activity so the new activity can choose
                     // what to display
-                    intent.putExtra("TEXT", text);
+                    intent.putExtra("ID", id);
                     CardDisplayLayout.appCompatActivity.startActivity(intent);
 
                 }

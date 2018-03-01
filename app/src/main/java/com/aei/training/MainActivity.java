@@ -26,41 +26,31 @@ public class MainActivity extends AppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
 
-
         super.onCreate(savedInstanceState);
+        cardDisplayLayout = new CardDisplayLayout(this, new Intent(MainActivity.this, lineStopsActivity.class));
         metroRetriever= new MetroRetriever();
-        Callback callback = new Callback<EstimateList>() {
+
+        handleLines();
+
+    }
+
+    private void handleLines(){
+        Callback callback = new Callback<TrainList>(){
             @Override
-            public void onResponse(Call<EstimateList>call, Response<EstimateList>response) {
-                Log.d("CallBack", " response is " + response.body().getEstimates());
+            public void onResponse(Call<TrainList> call, Response<TrainList>response) {
+
+                for(TrainLine trainLine: response.body().getTrainLine()){
+                    cardDisplayLayout.createCardTextView(trainLine.getDisplay_name(),0xff004dac, true,trainLine.getId());
+                }
             }
 
             @Override
-            public void onFailure(Call<EstimateList>call, Throwable t) {
-                Log.d("CallBack", " Throwable is " +t);
+            public void onFailure(Call<TrainList> call, Throwable t) {
+                cardDisplayLayout.createCardTextView("Nothing To Display",0xffffffff,false,null);
             }
         };
-       Callback callback2 = new Callback<TrainList>(){   
-       @Override    
-       public void onResponse(Call<TrainList>call, Response<TrainList>response) {       
-           Log.d("CallBack", " response is " + response.body().getTrainLine());    }    
-       @Override    
-       public void onFailure(Call<TrainList>call, Throwable t) {       
-           Log.d("CallBack", " Throwable is " +t);    }
-       };
-       metroRetriever.getLine(callback2);
-       metroRetriever.getEstimate(callback);
+        metroRetriever.getLine(callback);
 
-        //create a new card layout
-        cardDisplayLayout = new CardDisplayLayout(this, new Intent(MainActivity.this, lineStopsActivity.class));
-
-        //Testing create view function
-        cardDisplayLayout.createCardTextView("Metro Blue Line",0xff004dac, true);
-        cardDisplayLayout.createCardTextView("Metro Red Line",0xffee3a43, true);
-        cardDisplayLayout.createCardTextView("Metro Green Line",0xff2eab00, true);
-        cardDisplayLayout.createCardTextView("Metro Gold Line",0xffda7c20, true);
-        cardDisplayLayout.createCardTextView("Metro Purple Line",0xff9561a9, true);
-        cardDisplayLayout.createCardTextView("Metro Expo Line",0xff0177a5, true);
     }
 
 }
