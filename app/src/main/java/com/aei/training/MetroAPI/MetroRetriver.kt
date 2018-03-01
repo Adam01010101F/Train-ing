@@ -1,8 +1,8 @@
 package com.aei.training.MetroAPI
 
+import com.aei.training.Objects.Color
 import com.aei.training.Objects.EstimateList
 import com.aei.training.Objects.StopList
-
 import com.aei.training.Objects.TrainList
 import retrofit2.Callback
 import retrofit2.Retrofit
@@ -14,6 +14,7 @@ class MetroRetriever {
     private val estimate: mGrabEst
     private val lines: mGetLine
     private val stops: mGetStops
+    private val color: mGetColor
 
 
     init {
@@ -23,7 +24,13 @@ class MetroRetriever {
         estimate = retrofit.create(mGrabEst::class.java)
         lines = retrofit.create(mGetLine::class.java)
         stops = retrofit.create(mGetStops::class.java)
+        color = retrofit.create(mGetColor::class.java)
 
+    }
+
+    fun getColor(route_tag:String, callback: Callback<Color>){
+        val call = color.getColor(route_tag)
+        call.enqueue(callback)
     }
 
     fun getEstimate(route_tag:String,stop_id:String,callback: Callback<EstimateList>){      //Callback Function when receiving a train estimate request from user
