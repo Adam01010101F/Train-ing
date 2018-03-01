@@ -21,6 +21,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".lineStopsActivity"></activity>
+        <activity android:name=".StopInfoActivity"></activity>
     </application>
 
 </manifest>

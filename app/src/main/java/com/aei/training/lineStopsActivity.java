@@ -1,6 +1,7 @@
 package com.aei.training;
 
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import com.aei.training.MetroAPI.MetroRetriever;
@@ -19,7 +20,7 @@ public class lineStopsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        cardDisplayLayout = new CardDisplayLayout(this, null);
+        cardDisplayLayout = new CardDisplayLayout(this, new Intent(lineStopsActivity.this, StopInfoActivity.class));
         metroRetriever= new MetroRetriever();
         handleStops();
 
@@ -27,7 +28,7 @@ public class lineStopsActivity extends AppCompatActivity {
 
     private void handleStops(){
         String line = getIntent().getStringExtra("ID");
-        Callback callback = handleCallback();
+        Callback callback = handleCallback(line);
         if(line != null){
             metroRetriever.getStops(line,callback);
 
@@ -38,14 +39,14 @@ public class lineStopsActivity extends AppCompatActivity {
 
     }
 
-    private Callback handleCallback(){
+    private Callback handleCallback(final String line){
         Callback callback = new Callback<StopList>(){
             @Override
             public void onResponse(Call<StopList> call, Response<StopList> response) {
                 //Log.d("stop",response.body().getStops().get(0).getDisplay_name());
 
                 for(Stop stop: response.body().getStops()){
-                    cardDisplayLayout.createCardTextView(stop.getDisplay_name(),0xffffffff,true,stop.getId());
+                    cardDisplayLayout.createCardTextView(stop.getDisplay_name(),0xffffffff,true,line+stop.getId());
                 }
 
             }
