@@ -10,6 +10,7 @@ import com.aei.training.MetroAPI.MetroRetriever;
 import com.aei.training.Objects.Estimate;
 import com.aei.training.Objects.EstimateList;
 import com.aei.training.Objects.TrainLine;
+import com.aei.training.Objects.TrainList;
 
 import java.util.List;
 
@@ -39,6 +40,15 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("CallBack", " Throwable is " +t);
             }
         };
+       Callback callback2 = new Callback<TrainList>(){   
+       @Override    
+       public void onResponse(Call<TrainList>call, Response<TrainList>response) {       
+           Log.d("CallBack", " response is " + response.body().getTrainLine());    }    
+       @Override    
+       public void onFailure(Call<TrainList>call, Throwable t) {       
+           Log.d("CallBack", " Throwable is " +t);    }
+       };
+       metroRetriever.getLine(callback2);
        metroRetriever.getEstimate(callback);
 
         //create a new card layout
