@@ -33,6 +33,8 @@ public class StopInfoActivity extends AppCompatActivity {
         String line = getIntent().getStringExtra("ID");
         Callback callback = handleCallback();
         if(line != null){
+            Log.d("stop",line.substring(0,3));
+            Log.d("stop",line.substring(3,line.length()));
             metroRetriever.getEstimate(line.substring(0,3),line.substring(3,line.length()),callback);
 
 
@@ -46,6 +48,9 @@ public class StopInfoActivity extends AppCompatActivity {
         Callback callback = new Callback<EstimateList>(){
             @Override
             public void onResponse(Call<EstimateList> call, Response<EstimateList> response) {
+                if(response.body().getEstimates().size()==0){
+                    cardDisplayLayout.createCardTextView("Nothing To Display",0xffffffff,false,null);
+                }
                 for(Estimate estimate: response.body().getEstimates()){
                     int time = estimate.getSeconds();
                     int mins =(time / 60);

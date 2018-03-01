@@ -4,6 +4,8 @@ package com.aei.training;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+
 import com.aei.training.MetroAPI.MetroRetriever;
 import com.aei.training.Objects.Stop;
 import com.aei.training.Objects.StopList;
@@ -43,7 +45,7 @@ public class lineStopsActivity extends AppCompatActivity {
         Callback callback = new Callback<StopList>(){
             @Override
             public void onResponse(Call<StopList> call, Response<StopList> response) {
-                //Log.d("stop",response.body().getStops().get(0).getDisplay_name());
+                Log.d("stop",response.body().getStops().get(0).getDisplay_name());
 
                 for(Stop stop: response.body().getStops()){
                     cardDisplayLayout.createCardTextView(stop.getDisplay_name(),0xffffffff,true,line+stop.getId());
