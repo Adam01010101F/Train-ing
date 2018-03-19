@@ -1,72 +1,52 @@
 package com.aei.training;
 
-
-import android.content.Intent;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.annotation.TargetApi;
+import android.content.pm.PackageManager;
+import android.support.annotation.NonNull;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.app.LoaderManager.LoaderCallbacks;
+
+import android.content.CursorLoader;
+import android.content.Loader;
+import android.database.Cursor;
+import android.net.Uri;
+import android.os.AsyncTask;
+
+import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
+import android.provider.ContactsContract;
+import android.text.TextUtils;
+import android.view.KeyEvent;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.inputmethod.EditorInfo;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
-import com.aei.training.MetroAPI.MetroRetriever;
-import com.aei.training.Objects.Color;
-import com.aei.training.Objects.TrainLine;
-import com.aei.training.Objects.TrainList;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+import java.util.ArrayList;
+import java.util.List;
 
+import static android.Manifest.permission.READ_CONTACTS;
 
+/**
+ * A login screen that offers login via email/password.
+ */
 public class MainActivity extends AppCompatActivity {
 
-    private CardDisplayLayout cardDisplayLayout;
-    private MetroRetriever metroRetriever;
 
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
-        cardDisplayLayout = new CardDisplayLayout(this, new Intent(MainActivity.this, lineStopsActivity.class));
-        metroRetriever= new MetroRetriever();
+        setContentView(R.layout.activity_main);
+        // Set up the login form.
 
-        handleLines();
-
-    }
-
-    private void handleLines(){
-        Callback callback = new Callback<TrainList>(){
-            @Override
-            public void onResponse(Call<TrainList> call, Response<TrainList>response) {
-
-
-                for(TrainLine trainLine: response.body().getTrainLine()){
-                    handleColor(trainLine);
-
-                }
-            }
-
-            @Override
-            public void onFailure(Call<TrainList> call, Throwable t) {
-                cardDisplayLayout.createCardTextView("Nothing To Display",0xffffffff,false,null);
-            }
-        };
-        metroRetriever.getLine(callback);
-
-    }
-    private void handleColor(final TrainLine trainLine){
-        Callback callback = new Callback<Color>(){
-            @Override
-            public void onResponse(Call<Color> call, Response<Color>response) {
-
-                String color = response.body().getBg_color();
-                int clr = (int)Long.parseLong(color.replace("#","ff").toUpperCase(),16);
-                cardDisplayLayout.createCardTextView(trainLine.getDisplay_name(),clr, true,trainLine.getId());
-
-            }
-
-            @Override
-            public void onFailure(Call<Color> call, Throwable t) {
-                cardDisplayLayout.createCardTextView("Nothing To Display",0xffffffff,false,null);
-            }
-        };
-        metroRetriever.getColor(trainLine.getId(), callback);
     }
 
 }
