@@ -34,7 +34,7 @@
         app:layout_constraintVertical_bias="0.634" />
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/emailField"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -52,7 +52,7 @@
         app:layout_constraintVertical_bias="0.33" />
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/passField"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -69,8 +69,8 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.449" />
 
-    <Button
-        android:id="@+id/button2"
+    <com.facebook.login.widget.LoginButton
+        android:id="@+id/fbButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"

@@ -5,11 +5,11 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 android {
-    compileSdkVersion 25
+    compileSdkVersion 26
     defaultConfig {
         applicationId "com.aei.training"
         minSdkVersion 23
-        targetSdkVersion 25
+        targetSdkVersion 26
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -32,6 +32,15 @@ dependencies {
     compile "com.android.support:recyclerview-v7:$supportVersion"
     compile "com.android.support:support-annotations:$supportVersion"
     compile "com.android.support:support-annotations:25.4.0"
+
+//    compile 'com.facebook.android:facebook-anroid-sdk:[4,5)'
+    compile'com.facebook.android:facebook-core:[4,5)'
+    compile'com.facebook.android:facebook-login:[4,5)'
+    compile'com.facebook.android:facebook-share:[4,5)'
+    compile'com.facebook.android:facebook-places:[4,5)'
+    compile'com.facebook.android:facebook-messenger:[4,5)'
+    compile'com.facebook.android:facebook-applinks:[4,5)'
+
 
     compile 'com.squareup.retrofit2:retrofit:2.0.2'
     compile 'com.squareup.retrofit2:converter-gson:2.0.2'
