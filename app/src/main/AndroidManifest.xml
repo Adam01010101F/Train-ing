@@ -28,7 +28,7 @@
         <activity android:name=".lineStopsActivity" />
         <activity android:name=".StopInfoActivity" />
         <activity android:name=".RegisterActivity"/>
-
+        <activity android:name=".LineSelectActivity"/>
 
         <meta-data android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id"/>
