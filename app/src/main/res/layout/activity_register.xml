@@ -1,0 +1,55 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"   
+  xmlns:tools="http://schemas.android.com/tools"   
+  android:layout_width="match_parent"    
+  android:layout_height="match_parent"   
+  android:gravity="center_horizontal"    
+  android:orientation="vertical"   
+  android:paddingBottom="@dimen/activity_vertical_margin"   
+  android:paddingLeft="@dimen/activity_horizontal_margin"   
+  android:paddingRight="@dimen/activity_horizontal_margin"   
+  android:paddingTop="@dimen/activity_vertical_margin"    
+  tools:context=".RegisterActivity">  
+  
+  <EditText        
+    android:id="@+id/edtEmail"      
+    android:layout_width="match_parent"     
+    android:layout_height="wrap_content"    
+    android:layout_alignParentLeft="true"    
+    android:layout_alignParentTop="true"     
+    android:ems="10"     
+    android:inputType="textEmailAddress"    
+    android:hint="@string/email_hint" >       
+    <requestFocus />     
+  </EditText>   
+ 
+ <EditText       
+   android:id="@+id/edtPassword"      
+   android:layout_width="match_parent"    
+   android:layout_height="wrap_content"    
+   android:layout_alignLeft="@+id/edtEmail"   
+   android:layout_below="@+id/edtEmail"      
+   android:ems="10"     
+   android:inputType="textPassword"        
+   android:hint="@string/password_hint" />  
+   
+ <EditText   
+  android:id="@+id/edtRePassword"     
+  android:layout_width="match_parent"      
+  android:layout_height="wrap_content"     
+  android:layout_alignLeft="@+id/edtPassword"     
+  android:layout_below="@+id/edtPassword"     
+  android:ems="10"      
+  android:inputType="textPassword"      
+  android:hint="@string/repassword_hint" />    
+  
+  <Button       
+   android:id="@+id/btnRegister"    
+   android:layout_width="match_parent"    
+   android:layout_height="wrap_content"   
+   android:layout_alignLeft="@+id/edtRePassword"       
+   android:layout_below="@+id/edtRePassword"     
+   android:layout_marginTop="20dp"      
+   android:background="@drawable/button_bg"    
+   android:textColor="#fff"      
+   android:text="@string/signup_button_label" />
+ </RelativeLayout>
