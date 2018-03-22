@@ -20,7 +20,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-
+import com.google.firebase.auth.FirebaseUser;
 import java.util.Arrays;
 
 /**
@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
     protected EditText Password;
     protected TextView CreateAccount,forgotPass;
     private FirebaseAuth mFirebaseAuth;
-
+    private FirebaseUser currentUser;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,9 +50,17 @@ public class MainActivity extends AppCompatActivity {
         forgotPass=  (TextView)findViewById(R.id.textView3);
         Password = (EditText) findViewById(R.id.passField);
 
-        // Initialize 
+        // Initialize Auth and User
         mFirebaseAuth = FirebaseAuth.getInstance();
-
+        currentUser = mFirebaseAuth.getCurrentUser(); 
+        
+        if(currentUser !=null){         
+            Intent intent = new Intent(MainActivity.this, LineSelectActivity.class);          
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);        
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);          
+            startActivity(intent);
+         }   
+        
         forgotPass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -162,6 +170,16 @@ public class MainActivity extends AppCompatActivity {
 
         });
     }
-
+@Override
+    public void onStart(){    
+    super.onStart();    
+    FirebaseUser currentUser = mFirebaseAuth.getCurrentUser(); 
+    if(currentUser !=null){   
+        Intent intent = new Intent(MainActivity.this, LineSelectActivity.class);   
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);   
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);    
+        startActivity(intent);
+    }
+    }
 }
 
