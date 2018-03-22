@@ -31,4 +31,10 @@
     <string name="facebook_app_id">1773892245966925</string>
     <string name="fb_login_protocol_scheme">fb1773892245966925</string>
 
+    <!--strings for forgot password-->
+    <string name="forgot_pw_title">ERROR!</string>
+    <string name="forgot_pw_title_success">Success!</string>
+    <string name="forgot_pw_msg">Enter an email address for us to send the reset to.</string>
+    <string name="forgot_pw_success">Email Sent!</string>
+    <string name="forgot_pw_fail">Address not found. Email was not Sent!</string>
 </resources>

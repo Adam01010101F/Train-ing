@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
     private CallbackManager cbManager;
     protected Button logIn;
     protected EditText Password;
-    protected TextView CreateAccount;
+    protected TextView CreateAccount,forgotPass;
     private FirebaseAuth mFirebaseAuth;
 
     @Override
@@ -47,10 +47,47 @@ public class MainActivity extends AppCompatActivity {
         fbookButton = findViewById(R.id.fbButton);
         CreateAccount = (TextView) findViewById(R.id.textView2);
         logIn = (Button) findViewById(R.id.button);
+        forgotPass=  (TextView)findViewById(R.id.textView3);
         Password = (EditText) findViewById(R.id.passField);
 
         // Initialize 
         mFirebaseAuth = FirebaseAuth.getInstance();
+
+        forgotPass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (email.getText().toString().trim().isEmpty()) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                    builder.setMessage(R.string.forgot_pw_msg)
+                            .setTitle(R.string.forgot_pw_title)
+                            .setPositiveButton(android.R.string.ok, null);
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
+            } else {
+                    FirebaseAuth.getInstance().sendPasswordResetEmail(email.getText().toString().trim())
+                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if (task.isSuccessful()) {
+                                        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                                        builder.setMessage(R.string.forgot_pw_success)
+                                                .setTitle(R.string.forgot_pw_title_success)
+                                                .setPositiveButton(android.R.string.ok, null);
+                                        AlertDialog dialog = builder.create();
+                                        dialog.show();
+                                    } else {
+                                        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                                        builder.setMessage(R.string.forgot_pw_fail)
+                                                .setTitle(R.string.forgot_pw_title)
+                                                .setPositiveButton(android.R.string.ok, null);
+                                        AlertDialog dialog = builder.create();
+                                        dialog.show();
+                                    }
+                                }
+                            });
+                }
+            }
+        });
 
         CreateAccount.setOnClickListener(new View.OnClickListener() {
             @Override
