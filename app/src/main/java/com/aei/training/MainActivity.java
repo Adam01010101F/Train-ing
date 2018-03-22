@@ -16,6 +16,8 @@ import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
+import com.facebook.FacebookSdk;
+import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -37,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
     private CallbackManager cbManager;
     protected Button logIn;
     protected EditText Password;
-    protected TextView CreateAccount,forgotPass;
+    protected TextView CreateAccount, forgotPass;
     private FirebaseAuth mFirebaseAuth;
 
     @Override
@@ -52,11 +54,15 @@ public class MainActivity extends AppCompatActivity {
         fbookButton = findViewById(R.id.fbButton);
         CreateAccount = (TextView) findViewById(R.id.textView2);
         logIn = (Button) findViewById(R.id.button);
-        forgotPass=  (TextView)findViewById(R.id.textView3);
+        forgotPass = (TextView) findViewById(R.id.textView3);
         Password = (EditText) findViewById(R.id.passField);
 
         // Initialize
         mFirebaseAuth = FirebaseAuth.getInstance();
+
+        //TEMP CODE TO DEMO LOGIN
+        FirebaseAuth.getInstance().signOut();
+        LoginManager.getInstance().logOut();
 
         forgotPass.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
                             .setPositiveButton(android.R.string.ok, null);
                     AlertDialog dialog = builder.create();
                     dialog.show();
-            } else {
+                } else {
                     FirebaseAuth.getInstance().sendPasswordResetEmail(email.getText().toString().trim())
                             .addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
@@ -99,6 +105,41 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, RegisterActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        fbookButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                fbookButton.setReadPermissions("email", "public_profile");
+
+                // Callback registration
+                fbookButton.registerCallback(cbManager, new FacebookCallback<LoginResult>() {
+                    @Override
+                    public void onSuccess(LoginResult loginResult) {
+                        Log.d("onSuccess", "Its getting here!");
+                        facebookLoginToken(loginResult.getAccessToken());
+                        Intent intent = new Intent(MainActivity.this, LineSelectActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        startActivity(intent);
+
+                    }
+
+                    @Override
+                    public void onCancel() {
+                        Toast.makeText(getApplicationContext(), "Bad Facebook Credentials", Toast.LENGTH_LONG);
+                        Log.d("onCancel", "Its getting here!");
+
+                    }
+
+                    @Override
+                    public void onError(FacebookException exception) {
+                        Log.d("onError", "Its getting here!");
+
+                        Log.e("onError: Login", exception.toString());
+                    }
+                });
             }
         });
 
@@ -142,47 +183,16 @@ public class MainActivity extends AppCompatActivity {
                 }
 
 
-                fbookButton.setReadPermissions(Arrays.asList(email.getText().toString()));
-
-                // Callback registration
-                fbookButton.registerCallback(cbManager, new FacebookCallback<LoginResult>() {
-                    @Override
-                    public void onSuccess(LoginResult loginResult) {
-                        Log.d("onSuccess", "Its getting here!");
-                        facebookLoginToken(loginResult.getAccessToken());
-                        Intent intent = new Intent(MainActivity.this, LineSelectActivity.class);
-                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                        startActivity(intent);
-
-                    }
-
-                    @Override
-                    public void onCancel() {
-                        Toast.makeText(getApplicationContext(), "Bad Facebook Credentials", Toast.LENGTH_LONG);
-                        Log.d("onCancel", "Its getting here!");
-
-                    }
-
-                    @Override
-                    public void onError(FacebookException exception) {
-                        Log.d("onError", "Its getting here!");
-
-                        Log.e("onError: Login", exception.toString());
-                    }
-                });
-
-
             }
 
         });
     }
 
     @Override
-    protected void onStart(){
+    protected void onStart() {
         super.onStart();
         FirebaseUser currentUser = mFirebaseAuth.getCurrentUser();
-        if(currentUser != null){
+        if (currentUser != null) {
 
         }
     }
