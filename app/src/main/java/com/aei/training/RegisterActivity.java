@@ -64,9 +64,9 @@ public class RegisterActivity extends AppCompatActivity {
                     .addOnCompleteListener(RegisterActivity.this, new OnCompleteListener<AuthResult>() 
                     {                              
                      @Override                               
-                     public void onComplete(@NonNull Task<AuthResult> task) {                                   
-                      if (task.isSuccessful()) {                                       
-                        Intent intent = new Intent(RegisterActivity.this, MainActivity.class);                                     
+                     public void onComplete(@NonNull Task<AuthResult> task) {
+                      if (task.isSuccessful()) {
+                        Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);                               
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);                                   
                         startActivity(intent);                                 
