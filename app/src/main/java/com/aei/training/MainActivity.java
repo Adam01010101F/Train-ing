@@ -49,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
 //        FacebookSdk.sdkInitialize(getApplicationContext());
 //        AppEventsLogger.activateApp(this);
         // Set up the login form.
+        Log.d(" ", " ");
         cbManager = CallbackManager.Factory.create();
         email = findViewById(R.id.emailField);
         fbookButton = findViewById(R.id.fbButton);
