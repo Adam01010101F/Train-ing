@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
 //        FacebookSdk.sdkInitialize(getApplicationContext());
 //        AppEventsLogger.activateApp(this);
         // Set up the login form.
-        Log.d(" ", " ");
+
         cbManager = CallbackManager.Factory.create();
         email = findViewById(R.id.emailField);
         fbookButton = findViewById(R.id.fbButton);
@@ -62,9 +62,15 @@ public class MainActivity extends AppCompatActivity {
         mFirebaseAuth = FirebaseAuth.getInstance();
 
         //TEMP CODE TO DEMO LOGIN
-        FirebaseAuth.getInstance().signOut();
+  //      FirebaseAuth.getInstance().signOut();
         LoginManager.getInstance().logOut();
 
+        //firebasse auto-log in
+        if(mFirebaseAuth.getCurrentUser() != null)
+        {
+            Intent intent = new Intent(MainActivity.this, AccountManageActivity.class);
+            startActivity(intent);
+        }
         forgotPass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -144,6 +150,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
         logIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -165,7 +172,7 @@ public class MainActivity extends AppCompatActivity {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     if (task.isSuccessful()) {
-                                        Intent intent = new Intent(MainActivity.this, LineSelectActivity.class);
+                                        Intent intent = new Intent(MainActivity.this, AccountManageActivity.class);
                                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                         startActivity(intent);
