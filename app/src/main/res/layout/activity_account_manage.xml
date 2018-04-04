@@ -1,10 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation ="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.aei.training.AccountManageActivity">
+
+    <Button
+        android:id="@+id/viewPro"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:paddingBottom = "10dp"
+
+        android:layout_marginTop = "25dp"
+        android:layout_marginBottom = "0dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+
+        android:text="View Profile"
+        android:textSize="20dp"
+        android:textColor="#ffffff"
+        android:background="@drawable/roundedbutton"
+
+        />
+
+    <Button
+        android:id="@+id/EditPro"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:paddingBottom = "10dp"
+
+        android:layout_marginTop = "25dp"
+        android:layout_marginBottom = "0dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+
+        android:text="Edit Profile"
+        android:textSize="20dp"
+        android:textColor="#ffffff"
+        android:background="@drawable/roundedbutton"
+
+        />
+
+    <Button
+        android:id="@+id/MessageBoard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:paddingBottom = "10dp"
+
+        android:layout_marginTop = "25dp"
+        android:layout_marginBottom = "0dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+
+        android:text="Go To Message Board"
+        android:textSize="20dp"
+        android:textColor="#ffffff"
+        android:background="@drawable/roundedbutton"
+
+        />
+
 
 
     <Button
@@ -13,34 +72,31 @@
         android:layout_height="wrap_content"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
-        android:layout_marginBottom="8dp"
+
+        android:layout_marginTop="25dp"
+        android:layout_marginBottom="0dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="Log_Out"
-        android:textSize="15dp"
+        android:background="@drawable/roundedbutton"
+        android:text="Log Out"
+        android:textSize="20dp"
         android:textColor="#ffffff" />
 
     <Button
         android:id="@+id/delete"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
-        android:layout_marginBottom="8dp"
+
+        android:layout_marginTop="25dp"
+        android:layout_marginBottom="0dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:background="@drawable/roundedbutton"
-        android:text="Delete"
-        android:textSize="15dp"
+        android:text="Delete Firebase Account"
+        android:textSize="20dp"
         android:textColor="#ffffff"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
+       />
 
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.634" />
-
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>
