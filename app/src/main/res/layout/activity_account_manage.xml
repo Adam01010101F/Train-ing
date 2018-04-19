@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation ="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.aei.training.AccountManageActivity">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:paddingBottom = "10dp"
+
+        android:layout_marginTop = "25dp"
+        android:layout_marginBottom = "0dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_gravity = "center"
+        
+        android:text="Account  Management"
+        android:textSize="30dp"
+        android:textStyle ="bold"
+        android:textColor="#000000"/>
+    <Button
+        android:id="@+id/viewPro"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:paddingBottom = "10dp"
+
+        android:layout_marginTop = "25dp"
+        android:layout_marginBottom = "0dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+
+        android:text="View Profile"
+        android:textSize="20dp"
+        android:textColor="#ffffff"
+        android:background="@drawable/roundedbutton"
+
+        />
+
+    <Button
+        android:id="@+id/EditPro"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:paddingBottom = "10dp"
+
+        android:layout_marginTop = "25dp"
+        android:layout_marginBottom = "0dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+
+        android:text="Edit Profile"
+        android:textSize="20dp"
+        android:textColor="#ffffff"
+        android:background="@drawable/roundedbutton"
+
+        />
+    <Button
+        android:id="@+id/LineSel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:paddingBottom = "10dp"
+
+        android:layout_marginTop = "25dp"
+        android:layout_marginBottom = "0dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+
+        android:text="Select Line"
+        android:textSize="20dp"
+        android:textColor="#ffffff"
+        android:background="@drawable/roundedbutton"
+
+        />
+    <Button
+        android:id="@+id/MessageBoard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:paddingBottom = "10dp"
+
+        android:layout_marginTop = "25dp"
+        android:layout_marginBottom = "0dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+
+        android:text="Go To Message Board"
+        android:textSize="20dp"
+        android:textColor="#ffffff"
+        android:background="@drawable/roundedbutton"
+
+        />
+
+
+
+    <Button
+        android:id="@+id/logOut"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+
+        android:layout_marginTop="25dp"
+        android:layout_marginBottom="0dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:background="@drawable/roundedbutton"
+        android:text="Log Out"
+        android:textSize="20dp"
+        android:textColor="#ffffff" />
+
+    <Button
+        android:id="@+id/delete"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+
+        android:layout_marginTop="25dp"
+        android:layout_marginBottom="0dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:background="@drawable/roundedbutton"
+        android:text="Delete Firebase Account"
+        android:textSize="20dp"
+        android:textColor="#ffffff"
+       />
+
+</LinearLayout>

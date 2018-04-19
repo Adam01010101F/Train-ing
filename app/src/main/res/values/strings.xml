@@ -1,4 +1,40 @@
 <resources>
     <string name="app_name">Train-ing</string>
     <string name="action_settings">Settings</string>
+    <string name="title_activity_main">Sign in</string>
+
+    <string name="email_hint">Email</string>
+    <string name="password_hint">Password</string>
+    <string name="repassword_hint">Confirm Password</string>
+    <string name="signup_button_label">Register</string>
+    <string name="signup_error_message">Please make sure you enter an email address and password!</string>
+    <string name="signup_error_title">Error!</string>
+    <string name="signup_error_password_message">Passwords do not match!</string>
+    <string name="login_error_title">Error!</string>
+    <string name="login_error_message">Please make sure you enter an email address and password!</string>
+    <string name="sign_up_text">Sign Up!</string>
+    <string name="login_button_label">Login</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password (optional)</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
+    <!-- Strings related to Facebook SDK -->
+    <string name="facebook_app_id">1773892245966925</string>
+    <string name="fb_login_protocol_scheme">fb1773892245966925</string>
+
+    <!--strings for forgot password-->
+    <string name="forgot_pw_title">ERROR!</string>
+    <string name="forgot_pw_title_success">Success!</string>
+    <string name="forgot_pw_msg">Enter an email address for us to send the reset to.</string>
+    <string name="forgot_pw_success">Email Sent!</string>
+    <string name="forgot_pw_fail">Address not found. Email was not Sent!</string>
 </resources>
