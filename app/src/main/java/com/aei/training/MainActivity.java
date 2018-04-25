@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
         //firebasse auto-log in
         if(mFirebaseAuth.getCurrentUser() != null)
         {
-            Intent intent = new Intent(MainActivity.this, AccountManageActivity.class);
+            Intent intent = new Intent(MainActivity.this, LineSelectActivity.class);
             startActivity(intent);
         }
         forgotPass.setOnClickListener(new View.OnClickListener() {
@@ -178,7 +178,7 @@ public class MainActivity extends AppCompatActivity {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     if (task.isSuccessful()) {
-                                        Intent intent = new Intent(MainActivity.this, AccountManageActivity.class);
+                                        Intent intent = new Intent(MainActivity.this, LineSelectActivity.class);
                                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                         startActivity(intent);
@@ -229,11 +229,11 @@ public class MainActivity extends AppCompatActivity {
                             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             startActivity(intent);
-                        } else {
+                        } else if(!task.isSuccessful()) {
                             // If sign in fails, display a message to the user.
                             Log.w("FacebookLogin", "signInWithCredential:failure", task.getException());
-                            Toast.makeText(MainActivity.this, "Authentication failed.",
-                                    Toast.LENGTH_SHORT).show();
+//                            Toast.makeText(MainActivity.this, "Authentication failed.",
+//                                    Toast.LENGTH_SHORT).show();
                         }
                     }
                 });

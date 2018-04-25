@@ -1,5 +1,6 @@
 package com.aei.training;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
@@ -9,15 +10,23 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.content.res.ResourcesCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 /**
  * Created by Null on 2/27/2018.
@@ -133,10 +142,79 @@ public class CardDisplayLayout implements NavigationView.OnNavigationItemSelecte
 
         }
         if(item.equals(menu.getItem(4))){
-
+            FirebaseAuth.getInstance().signOut();
+            Intent intent = new Intent(this.appCompatActivity, MainActivity.class);
+            this.appCompatActivity.startActivity(intent);
         }
         if(item.equals(menu.getItem(5))){
+            //creates AlertDialog for deletion of user account when deletion button clicked
+            final  AlertDialog.Builder alertDialog = new AlertDialog.Builder(this.appCompatActivity);
+            alertDialog.setTitle("DELETE ACCOUNT");
+            alertDialog.setMessage("Enter FireBase Email to delete FireBase account");
 
+            final EditText input = new EditText(this.appCompatActivity);
+            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT,
+                    LinearLayout.LayoutParams.MATCH_PARENT);
+            input.setLayoutParams(lp);
+            alertDialog.setView(input);
+            alertDialog.setPositiveButton("ENTER",new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int whichButton) {
+
+                    String userIn = input.getText().toString();
+                    userIn =  userIn.trim();
+                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                    String EmailFire="";
+                    try{
+                        EmailFire = user.getEmail();
+                    }catch(Exception e){
+
+                    }
+
+
+
+
+                    if(userIn.equals(EmailFire)) {
+
+                        Toast toast = Toast.makeText(appCompatActivity.getApplicationContext(), "Deleting your account", Toast.LENGTH_LONG);
+                        toast.show();
+                        try{
+                        user.delete()
+                                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        if (task.isSuccessful()) {
+                                            Log.d("TAG ", "User account deleted.");
+                                            Toast toast = Toast.makeText(appCompatActivity.getApplicationContext(), "Account was deleted", Toast.LENGTH_LONG);
+                                            toast.show();
+                                            Intent intent = new Intent(appCompatActivity, MainActivity.class);
+                                            appCompatActivity.startActivity(intent);
+                                        } else {
+                                            Log.d("TAG ", "User account not deleted.");
+                                        }
+                                    }
+                                });
+
+                        }catch (Exception e){
+                            toast = Toast.makeText(appCompatActivity.getApplicationContext(), "Account was not found", Toast.LENGTH_LONG);
+                            toast.show();
+                        }
+                    } else {
+
+                        Toast toast = Toast.makeText(appCompatActivity.getApplicationContext(), "FireBase email was not entered, please click delete again", Toast.LENGTH_LONG);
+                        toast.show();
+
+                    }
+
+                }
+            });
+            alertDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int whichButton) {
+                    //pass
+                }
+            });
+            AlertDialog b = alertDialog.create();
+            b.show();
         }
 
         return false;

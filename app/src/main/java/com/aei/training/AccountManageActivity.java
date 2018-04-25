@@ -47,7 +47,7 @@ public class AccountManageActivity extends AppCompatActivity {
         selectLine.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FirebaseAuth.getInstance().signOut();
+                //FirebaseAuth.getInstance().signOut();
                 Intent intent = new Intent(AccountManageActivity.this, LineSelectActivity.class);
                 startActivity(intent);
             }
