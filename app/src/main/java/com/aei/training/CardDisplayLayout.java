@@ -50,7 +50,12 @@ public class CardDisplayLayout implements NavigationView.OnNavigationItemSelecte
         navigationView.setFitsSystemWindows(true);
         Menu menu = navigationView.getMenu();
 
-        menu.add("Lines");
+        menu.add("View Profile");
+        menu.add("Edit Profile");
+        menu.add("Line Information");
+        menu.add("Boards");
+        menu.add("Log Out");
+        menu.add("Delete Account");
 
 
 
