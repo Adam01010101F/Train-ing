@@ -1,11 +1,19 @@
 package com.aei.training;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
+import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
 import android.support.v4.content.res.ResourcesCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.view.Gravity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
@@ -15,9 +23,12 @@ import android.widget.TextView;
  * Created by Null on 2/27/2018.
  */
 
-public class CardDisplayLayout {
+public class CardDisplayLayout implements NavigationView.OnNavigationItemSelectedListener {
+    private DrawerLayout drawerLayout;
+    private NavigationView navigationView;
     private LinearLayout linearLayout;
     private LinearLayout.LayoutParams params;
+    private DrawerLayout.LayoutParams dParams;
     private ScrollView scrollView;
     private static AppCompatActivity appCompatActivity;
     private Intent intent;
@@ -25,6 +36,28 @@ public class CardDisplayLayout {
     public CardDisplayLayout(AppCompatActivity appCompatActivity, Intent intent){
         this.intent = intent;
         this.appCompatActivity =appCompatActivity;
+
+
+        drawerLayout = new DrawerLayout(this.appCompatActivity);
+
+
+        dParams = new DrawerLayout.LayoutParams( DrawerLayout.LayoutParams.MATCH_PARENT ,  DrawerLayout.LayoutParams.MATCH_PARENT);
+        dParams.gravity= Gravity.START;
+
+        navigationView = new NavigationView(this.appCompatActivity);
+        navigationView.setLayoutParams(dParams);
+        navigationView.setBackgroundColor(Color.WHITE);
+        navigationView.setFitsSystemWindows(true);
+        Menu menu = navigationView.getMenu();
+
+        menu.add("Lines");
+
+
+
+        navigationView.invalidate();
+
+        navigationView.setNavigationItemSelectedListener(this);
+
         scrollView = new ScrollView(this.appCompatActivity);
 
         params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -34,7 +67,15 @@ public class CardDisplayLayout {
         linearLayout.setLayoutParams(params);
         linearLayout.setOrientation(LinearLayout.VERTICAL);
         scrollView.addView(linearLayout);
-        this.appCompatActivity.setContentView(scrollView);
+        drawerLayout.addView(scrollView);
+        drawerLayout.addView(navigationView);
+
+
+        this.appCompatActivity.setContentView(drawerLayout);
+
+
+
+
     }
 
     public void createCardTextView(String text, int lineColor, boolean clickable,final String id){
@@ -66,5 +107,12 @@ public class CardDisplayLayout {
         }
 
         linearLayout.addView(textView);
+    }
+
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        Log.d("AYY", "onMenuItemClick: LMAO");
+        return false;
     }
 }

@@ -3,9 +3,12 @@ package com.aei.training;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -34,6 +37,7 @@ import java.util.Arrays;
  * A login screen that offers login via email/password.
  */
 public class MainActivity extends AppCompatActivity {
+
     private LoginButton fbookButton;
     private EditText email;
     private CallbackManager cbManager;
@@ -49,6 +53,8 @@ public class MainActivity extends AppCompatActivity {
 //        FacebookSdk.sdkInitialize(getApplicationContext());
 //        AppEventsLogger.activateApp(this);
         // Set up the login form.
+
+
 
         cbManager = CallbackManager.Factory.create();
         email = findViewById(R.id.emailField);
@@ -194,6 +200,8 @@ public class MainActivity extends AppCompatActivity {
             }
 
         });
+
+       
     }
 
     @Override
