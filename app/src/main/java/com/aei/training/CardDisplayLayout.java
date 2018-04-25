@@ -128,7 +128,8 @@ public class CardDisplayLayout implements NavigationView.OnNavigationItemSelecte
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         if(item.equals(menu.getItem(0))){
-
+            Intent it = new Intent(this.appCompatActivity,ViewAccountActivity.class);
+            this.appCompatActivity.startActivity(it);
         }
         if(item.equals(menu.getItem(1))){
 
@@ -171,14 +172,12 @@ public class CardDisplayLayout implements NavigationView.OnNavigationItemSelecte
 
                     }
 
-
-
-
                     if(userIn.equals(EmailFire)) {
 
                         Toast toast = Toast.makeText(appCompatActivity.getApplicationContext(), "Deleting your account", Toast.LENGTH_LONG);
                         toast.show();
                         try{
+
                         user.delete()
                                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                                     @Override

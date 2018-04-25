@@ -29,7 +29,11 @@
         <activity android:name=".StopInfoActivity" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".LineSelectActivity" />
-        <activity android:name=".AccountManageActivity"></activity>
+        <activity android:name=".AccountManageActivity"/>
+        <activity android:name=".ViewAccountActivity"/>
+        <activity android:name=".EditAccountActivity"/>
+
+
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
