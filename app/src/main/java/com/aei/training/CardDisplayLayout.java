@@ -25,6 +25,7 @@ import android.widget.TextView;
 
 public class CardDisplayLayout implements NavigationView.OnNavigationItemSelectedListener {
     private DrawerLayout drawerLayout;
+    private Menu menu;
     private NavigationView navigationView;
     private LinearLayout linearLayout;
     private LinearLayout.LayoutParams params;
@@ -48,7 +49,7 @@ public class CardDisplayLayout implements NavigationView.OnNavigationItemSelecte
         navigationView.setLayoutParams(dParams);
         navigationView.setBackgroundColor(Color.WHITE);
         navigationView.setFitsSystemWindows(true);
-        Menu menu = navigationView.getMenu();
+        menu = navigationView.getMenu();
 
         menu.add("View Profile");
         menu.add("Edit Profile");
@@ -117,7 +118,27 @@ public class CardDisplayLayout implements NavigationView.OnNavigationItemSelecte
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        Log.d("AYY", "onMenuItemClick: LMAO");
+        if(item.equals(menu.getItem(0))){
+
+        }
+        if(item.equals(menu.getItem(1))){
+
+        }
+        if(item.equals(menu.getItem(2))){
+
+            Intent it = new Intent(this.appCompatActivity,LineSelectActivity.class);
+            this.appCompatActivity.startActivity(it);
+        }
+        if(item.equals(menu.getItem(3))){
+
+        }
+        if(item.equals(menu.getItem(4))){
+
+        }
+        if(item.equals(menu.getItem(5))){
+
+        }
+
         return false;
     }
 }
