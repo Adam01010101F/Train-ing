@@ -14,6 +14,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.util.regex.Pattern;
+
 /**
  * A login screen that offers login via email/password.
  */
@@ -55,7 +57,8 @@ public class RegisterActivity extends AppCompatActivity {
                     AlertDialog dialog = builder.create();
                     dialog.show();
 
-                } else if (!password.equals(rePassword)) {
+                }
+                else if (!password.equals(rePassword)) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(RegisterActivity.this);
                     builder.setMessage(R.string.signup_error_password_message)
                             .setTitle(R.string.signup_error_title)
@@ -89,4 +92,6 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
     }
+
+
 }

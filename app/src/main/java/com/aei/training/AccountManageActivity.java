@@ -23,6 +23,7 @@ public class AccountManageActivity extends AppCompatActivity {
     private Button delete;
     private Button selectLine;
     private FirebaseAuth mFirebaseAuth;
+    private Button editProfile;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,10 +31,18 @@ public class AccountManageActivity extends AppCompatActivity {
         logOut = (Button) findViewById(R.id.logOut);
         delete = (Button) findViewById(R.id.delete);
         selectLine = (Button) findViewById(R.id.LineSel);
+        editProfile = (Button) findViewById(R.id.EditPro);
+
 
         // Initialize
         mFirebaseAuth = FirebaseAuth.getInstance();
-
+        editProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AccountManageActivity.this, EditProfile.class);
+                startActivity(intent);
+            }
+        });
         //logs user out of firebase account
         //facebook?
         logOut.setOnClickListener(new View.OnClickListener() {
