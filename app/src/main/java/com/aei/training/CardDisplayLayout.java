@@ -132,7 +132,8 @@ public class CardDisplayLayout implements NavigationView.OnNavigationItemSelecte
             this.appCompatActivity.startActivity(it);
         }
         if(item.equals(menu.getItem(1))){
-
+            Intent it = new Intent(this.appCompatActivity,EditAccountActivity.class);
+            this.appCompatActivity.startActivity(it);
         }
         if(item.equals(menu.getItem(2))){
 
