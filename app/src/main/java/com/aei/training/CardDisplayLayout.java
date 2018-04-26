@@ -61,7 +61,9 @@ public class CardDisplayLayout implements NavigationView.OnNavigationItemSelecte
         menu = navigationView.getMenu();
 
         menu.add("View Profile");
-        menu.add("Edit Profile");
+        menu.add("Change Email");
+        menu.add("Change Password");
+        menu.add("Change Display Name");
         menu.add("Line Information");
         menu.add("Boards");
         menu.add("Log Out");
@@ -132,23 +134,31 @@ public class CardDisplayLayout implements NavigationView.OnNavigationItemSelecte
             this.appCompatActivity.startActivity(it);
         }
         if(item.equals(menu.getItem(1))){
-            Intent it = new Intent(this.appCompatActivity,EditAccountActivity.class);
+            Intent it = new Intent(this.appCompatActivity,ChangeEmail.class);
             this.appCompatActivity.startActivity(it);
         }
         if(item.equals(menu.getItem(2))){
+            Intent it = new Intent(this.appCompatActivity,ChangePassword.class);
+            this.appCompatActivity.startActivity(it);
+        }
+        if(item.equals(menu.getItem(3))){
+            Intent it = new Intent(this.appCompatActivity,EditDisplayInfo.class);
+            this.appCompatActivity.startActivity(it);
+        }
+        if(item.equals(menu.getItem(4))){
 
             Intent it = new Intent(this.appCompatActivity,LineSelectActivity.class);
             this.appCompatActivity.startActivity(it);
         }
-        if(item.equals(menu.getItem(3))){
+        if(item.equals(menu.getItem(5))){
 
         }
-        if(item.equals(menu.getItem(4))){
+        if(item.equals(menu.getItem(6))){
             FirebaseAuth.getInstance().signOut();
             Intent intent = new Intent(this.appCompatActivity, MainActivity.class);
             this.appCompatActivity.startActivity(intent);
         }
-        if(item.equals(menu.getItem(5))){
+        if(item.equals(menu.getItem(7))){
             //creates AlertDialog for deletion of user account when deletion button clicked
             final  AlertDialog.Builder alertDialog = new AlertDialog.Builder(this.appCompatActivity);
             alertDialog.setTitle("DELETE ACCOUNT");

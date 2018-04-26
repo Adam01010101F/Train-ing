@@ -35,8 +35,8 @@ public class EditProfile extends AppCompatActivity {
         changeDisplayInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(EditProfile.this, ChangeIcon.class);
-                startActivity(intent);
+//                Intent intent = new Intent(EditProfile.this, Cha.class);
+//                startActivity(intent);
             }
         });
     }
