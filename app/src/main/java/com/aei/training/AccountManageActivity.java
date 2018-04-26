@@ -24,6 +24,7 @@ public class AccountManageActivity extends AppCompatActivity {
     private Button selectLine;
     private FirebaseAuth mFirebaseAuth;
     private Button editProfile;
+    private Button changeEmail;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,10 +33,18 @@ public class AccountManageActivity extends AppCompatActivity {
         delete = (Button) findViewById(R.id.delete);
         selectLine = (Button) findViewById(R.id.LineSel);
         editProfile = (Button) findViewById(R.id.EditPro);
+        changeEmail =(Button) findViewById(R.id.changeEmail);
 
 
         // Initialize
         mFirebaseAuth = FirebaseAuth.getInstance();
+        changeEmail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AccountManageActivity.this, ChangeEmail.class);
+                startActivity(intent);
+            }
+        });
         editProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

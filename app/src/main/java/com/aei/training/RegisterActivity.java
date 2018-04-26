@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -48,7 +49,28 @@ public class RegisterActivity extends AppCompatActivity {
                 email = email.trim();
                 password = password.trim();
                 rePassword = rePassword.trim();
+                int x = 0;
+                int y = 0;
 
+                for(int i = 0; i < email.length(); i++)
+                {
+                    if(email.charAt(i) == '@')
+                    {
+                        x = x +1;
+
+                    }
+                    if(email.charAt(i) == '.')
+                    {
+                        y = y +1;
+                    }
+
+                }
+
+                if((x > 1 || y > 1 ) && (!email.equals("")))
+                {
+                    Toast toast = Toast.makeText(getApplicationContext(), "Please include  just one @ and one . in both emails", Toast.LENGTH_LONG);
+                    toast.show();
+                } else
                 if (password.isEmpty() || email.isEmpty() || rePassword.isEmpty()) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(RegisterActivity.this);
                     builder.setMessage(R.string.signup_error_message)
@@ -74,7 +96,7 @@ public class RegisterActivity extends AppCompatActivity {
                                     if (task.isSuccessful()) {
                                         mFirebaseAuth.getCurrentUser().sendEmailVerification();
 
-                                        Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
+                                        Intent intent = new Intent(RegisterActivity.this, LineSelectActivity.class);
                                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                         startActivity(intent);
