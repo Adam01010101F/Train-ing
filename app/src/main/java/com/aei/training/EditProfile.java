@@ -14,9 +14,9 @@ public class EditProfile extends AppCompatActivity {
     protected  void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
 //        setContentView();
-        changeEmail = (Button) findViewById(R.id.logOut);
-        changePassword = (Button) findViewById(R.id.logOut);
-        changeDisplayInfo = (Button) findViewById(R.id.logOut);
+       changeEmail = (Button) findViewById(R.id.logOut);
+       changePassword = (Button) findViewById(R.id.logOut);
+       changeDisplayInfo = (Button) findViewById(R.id.logOut);
 
         changeEmail.setOnClickListener(new View.OnClickListener() {
             @Override

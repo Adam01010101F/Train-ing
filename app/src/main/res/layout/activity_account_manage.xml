@@ -130,5 +130,21 @@
         android:textSize="20dp"
         android:textColor="#ffffff"
        />
+    <Button
+        android:id="@+id/changeEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+
+        android:layout_marginTop="25dp"
+        android:layout_marginBottom="0dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:background="@drawable/roundedbutton"
+        android:text="Change Current Email"
+        android:textSize="20dp"
+        android:textColor="#ffffff"
+        />
 
 </LinearLayout>
