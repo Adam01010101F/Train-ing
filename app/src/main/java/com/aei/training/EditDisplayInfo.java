@@ -50,7 +50,7 @@ public class EditDisplayInfo extends AppCompatActivity{
                     public boolean onNavigationItemSelected(MenuItem item) {
                         // set item as selected to persist highlight
                         item.setChecked(false);
-                     
+
 
                         // Add code here to update the UI based on the item selected
                         // For example, swap UI fragments here
