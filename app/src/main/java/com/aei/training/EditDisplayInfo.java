@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -26,7 +27,6 @@ public class EditDisplayInfo extends AppCompatActivity {
     private Button uName;
     private Button updateDisplayInfo;
     private EditText nameField;
-    private InputStream photoUri;
     private String userName;
     final int PICK_PHOTO_FOR_AVATAR = 1;
 
@@ -34,27 +34,31 @@ public class EditDisplayInfo extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        setContentView();
+        setContentView(R.layout.activity_edit_account);
 //        upPic = (Button) findViewById();
-        uName = (Button) findViewById();
-        updateDisplayInfo = (Button) findViewById();
-        nameField = (EditText) findViewById();
+//        uName = (Button) findViewById(R.id.);
+        updateDisplayInfo = (Button) findViewById(R.id.submitDisplayInfo);
+        nameField = (EditText) findViewById(R.id.uNameField);
 
-        photoUri = null;
         userName = "";
 
         user = FirebaseAuth.getInstance().getCurrentUser();
 
-        upPic.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                pickImage();
-            }
-        });
+//        upPic.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                pickImage();
+//            }
+//        });
+        
         updateDisplayInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                updateProfile();
+                if(!nameField.getText().toString().isEmpty()) {
+                    updateProfile();
+                } else{
+                    popToast("Enter a display name.");
+                }
             }
         });
 
@@ -67,11 +71,10 @@ public class EditDisplayInfo extends AppCompatActivity {
         startActivityForResult(intent, PICK_PHOTO_FOR_AVATAR);
     }
 
-//    TODO:: SET DEFAULT USERNAME ON ACCOUNT CREATION ,"USER:" + RAND_NUM, default photo if possible.
+//    TODO:: SET DEFAULT USERNAME ON ACCOUNT CREATION or chatboard use,"USER:" + RAND_NUM, default photo if possible.
     private void updateProfile(){
         profile = new UserProfileChangeRequest.Builder()
-                .setDisplayName(userName.isEmpty() ? user.getDisplayName() : userName)
-//                .setPhotoUri(photoUri==null ? user.getPhotoUrl() : photoUri)
+                .setDisplayName(nameField.getText().toString())
                 .build();
 
 
@@ -80,11 +83,20 @@ public class EditDisplayInfo extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
-                            Log.d("SUCCESS", "User profile updated.");
+                            user = FirebaseAuth.getInstance().getCurrentUser();
+                            popToast("Profile Updated!");
+                        } else{
+                            popToast("Profile not updated.");
                         }
                     }
                 });
-        }
+    }
+
+    protected void popToast(String msg){
+        Toast toast = Toast.makeText(getApplication().getBaseContext(), msg,
+                Toast.LENGTH_LONG);
+        toast.show();
+    }
 
 
 }

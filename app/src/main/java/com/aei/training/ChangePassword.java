@@ -64,8 +64,8 @@ public class ChangePassword extends AppCompatActivity{
                         if (task.isSuccessful()) {
                             Log.d("PsChg", "User password updated.");
                             verifyEmail();
-                            Toast toast = Toast.makeText(getApplication().getBaseContext(), "Password Changed"
-                                    , Toast.LENGTH_LONG);
+                            Toast toast = Toast.makeText(getApplication().getBaseContext(), "Password Changed",
+                                    Toast.LENGTH_LONG);
                             toast.show();
                         }
                         else{
