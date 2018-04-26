@@ -1,21 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
     <group android:checkableBehavior="single">
-        <item
-            android:id="@+id/nav_camera"
 
-            android:title="one" />
         <item
-            android:id="@+id/nav_gallery"
-
-            android:title="two" />
+            android:id="@+id/nav_View_Profile"
+            android:title="View Profile"/>
         <item
-            android:id="@+id/nav_slideshow"
-
-            android:title="threew" />
+            android:id="@+id/nav_Change_Email"
+            android:title="Change Email"/>
         <item
-            android:id="@+id/nav_manage"
-
-            android:title="four" />
+            android:id="@+id/nav_Change_Password"
+            android:title="Change Password"/>
+        <item
+            android:id="@+id/nav_Change_Display_Name"
+            android:title="Change Display Name"/>
+        <item
+            android:id="@+id/nav_Line_Information"
+            android:title="Line Information"/>
+        <item
+            android:id="@+id/nav_Boards"
+            android:title="Boards"/>
+        <item
+            android:id="@+id/nav_Log_Out"
+            android:title="Log Out"/>
+        <item
+            android:id="@+id/nav_Delete_Account"
+            android:title="Delete Account"/>
     </group>
 </menu>
+
+
+
+
+
+
