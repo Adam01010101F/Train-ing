@@ -32,6 +32,9 @@
         <activity android:name=".AccountManageActivity"/>
         <activity android:name=".ViewAccountActivity"/>
         <activity android:name=".EditAccountActivity"/>
+        <activity android:name=".ChangePassword"/>
+        <activity android:name=".ChangeEmail"/>
+        <activity android:name=".EditDisplayInfo"/>
 
 
 
