@@ -23,8 +23,8 @@ public class ViewAccountActivity  extends AppCompatActivity {
 
         cardDisplayLayout = new CardDisplayLayout(this, null);
 
-        cardDisplayLayout.createCardTextView("Display Name: "+user.getDisplayName(),0xffffffff,false,null);
-        cardDisplayLayout.createCardTextView("Email: "+user.getEmail(),0xffffffff,false,null);
+        cardDisplayLayout.createCardTextView("Display Name: "+ user.getDisplayName(),0xffffffff,false,null);
+        cardDisplayLayout.createCardTextView("Email: "+ user.getEmail(),0xffffffff,false,null);
 
 
     }

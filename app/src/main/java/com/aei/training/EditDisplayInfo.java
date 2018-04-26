@@ -171,7 +171,7 @@ public class EditDisplayInfo extends AppCompatActivity{
 //                pickImage();
 //            }
 //        });
-        
+
         updateDisplayInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
