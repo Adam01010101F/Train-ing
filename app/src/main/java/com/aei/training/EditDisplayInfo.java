@@ -27,7 +27,7 @@ import java.io.InputStream;
 
 
 public class EditDisplayInfo extends AppCompatActivity{
-    private DrawerLayout mDrawerLayout;
+
     private FirebaseUser user;
     private UserProfileChangeRequest profile;
     private Button upPic;
@@ -42,7 +42,7 @@ public class EditDisplayInfo extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dname_drawer);
-        mDrawerLayout = findViewById(R.id.drawer_layout);
+
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(
                 new NavigationView.OnNavigationItemSelectedListener() {
