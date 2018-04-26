@@ -30,7 +30,7 @@ public class ChangePassword extends AppCompatActivity{
         fireAuth = FirebaseAuth.getInstance();
         user = fireAuth.getCurrentUser();
         //Setting UI cars
-        setContentView(R.layout.activity_change_password);
+        setContentView(R.layout.pass_drawer);
         newPass =(EditText) findViewById(R.id.passField);
         confPass = (EditText) findViewById(R.id.confPassField);
         changePass = (Button) findViewById(R.id.chngPassButton);
