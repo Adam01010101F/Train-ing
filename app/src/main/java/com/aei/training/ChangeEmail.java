@@ -24,10 +24,10 @@ public class ChangeEmail extends AppCompatActivity {
         @Override
         protected void onCreate(Bundle savedInstanceState) {
                 super.onCreate(savedInstanceState);
-                setContentView(R.layout.change_email);
-                ChangeEmail = (Button) findViewById(R.id.EmailChange);
-                currentEmail = (EditText) findViewById(R.id.Current_Email);
-                newEmail = (EditText) findViewById(R.id.New_Email);
+//                setContentView(R.layout.change_email);
+//                ChangeEmail = (Button) findViewById(R.id.EmailChange);
+//                currentEmail = (EditText) findViewById(R.id.Current_Email);
+//                newEmail = (EditText) findViewById(R.id.New_Email);
 
 
 
