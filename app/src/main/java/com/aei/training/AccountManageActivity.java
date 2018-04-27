@@ -98,24 +98,45 @@ public class AccountManageActivity extends AppCompatActivity {
 
                            if(userIn.equals(EmailFire))
                            {
-                               Toast toast = Toast.makeText(getApplicationContext(), "FireBase email was entered, deleting your account", Toast.LENGTH_LONG);
-                               toast.show();
+                               AlertDialog.Builder builder = new AlertDialog.Builder(AccountManageActivity.this);
+                               builder.setMessage("Firebase email was entered deleting your account")
+                                       .setTitle("Deletion")
+                                       .setPositiveButton(android.R.string.ok, null);
+                               AlertDialog show = builder.create();
+                               show.show();
                                user.delete()
                                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task) {
                                         if (task.isSuccessful()) {
+                                            AlertDialog.Builder builder = new AlertDialog.Builder(AccountManageActivity.this);
+                                            builder.setMessage("Firebase use acount deleted")
+                                                    .setTitle("Deletion")
+                                                    .setPositiveButton(android.R.string.ok, null);
+                                            AlertDialog show2 = builder.create();
+                                            show2.show();
                                             Log.d("TAG ", "User account deleted.");
                                             Intent intent = new Intent(AccountManageActivity.this, MainActivity.class);
                                             startActivity(intent);
                                         } else {
+                                            AlertDialog.Builder builder = new AlertDialog.Builder(AccountManageActivity.this);
+                                            builder.setMessage("Sorry we couldn't delete your Firebase account, try again")
+                                                    .setTitle("Error: Deletion")
+                                                    .setPositiveButton(android.R.string.ok, null);
+                                            AlertDialog show3 = builder.create();
+                                            show3.show();
                                             Log.d("TAG ", "User account not deleted.");
                                         }
                                     }
                                 });
                            } else {
-                               Toast toast = Toast.makeText(getApplicationContext(), "FireBase email was not entered, please click delete again", Toast.LENGTH_LONG);
-                               toast.show();
+                               AlertDialog.Builder builder = new AlertDialog.Builder(AccountManageActivity.this);
+                               builder.setMessage("FireBase email was not entered, please click delete again")
+                                       .setTitle("Error: Wrong Email")
+                                       .setPositiveButton(android.R.string.ok, null);
+                               AlertDialog show2 = builder.create();
+                               show2.show();
+                               Log.d("TAG ", "FireBase emal was not entered, please try again (deletion).");
 
                            }
 
