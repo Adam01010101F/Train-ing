@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "805916500450",
+    "firebase_url": "https://train-ing-israel-s-branch.firebaseio.com",
+    "project_id": "train-ing-israel-s-branch",
+    "storage_bucket": "train-ing-israel-s-branch.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:805916500450:android:72a3553ac216e058",
+        "android_client_info": {
+          "package_name": "com.aei.training"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "805916500450-u5f4mkoln99ck9g8n9u7jb5bas8e6dnq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.aei.training",
+            "certificate_hash": "2bda850f58e642ac5682bf6268b5016d28f0c2a2"
+          }
+        },
+        {
+          "client_id": "805916500450-p0jv8qfk3kd9tae524h9dqoee46jqgtl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAWMEqQXlu8WbOV82HaSBMpyivg-38MUqM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "805916500450-p0jv8qfk3kd9tae524h9dqoee46jqgtl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
