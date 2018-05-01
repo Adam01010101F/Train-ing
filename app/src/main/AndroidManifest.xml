@@ -35,6 +35,7 @@
         <activity android:name=".ChangePassword"/>
         <activity android:name=".ChangeEmail"/>
         <activity android:name=".EditDisplayInfo"/>
+        <activity android:name=".FireStoreTestActivity"/>
 
 
 

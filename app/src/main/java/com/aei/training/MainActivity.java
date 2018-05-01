@@ -65,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
         Password = (EditText) findViewById(R.id.passField);
 
         // Initialize
+
         mFirebaseAuth = FirebaseAuth.getInstance();
 
         //TEMP CODE TO DEMO LOGIN
@@ -74,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
         //firebasse auto-log in
         if(mFirebaseAuth.getCurrentUser() != null)
         {
-            Intent intent = new Intent(MainActivity.this,  LineSelectActivity.class);
+            Intent intent = new Intent(MainActivity.this, LineSelectActivity.class);
             startActivity(intent);
         }
         forgotPass.setOnClickListener(new View.OnClickListener() {
