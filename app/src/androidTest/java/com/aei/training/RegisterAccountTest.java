@@ -30,7 +30,7 @@ import org.junit.runner.RunWith;
 
 import static org.hamcrest.Matchers.allOf;
 
-import
+
 
 import java.util.Random;
 
@@ -190,7 +190,7 @@ public class RegisterAccountTest {
 
     }
 
-    private static Matcher<View> childAtPosition(
+    static Matcher<View> childAtPosition(
             final Matcher<View> parentMatcher, final int position) {
 
         return new TypeSafeMatcher<View>() {

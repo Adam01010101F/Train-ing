@@ -65,7 +65,7 @@ public class FireStoreTestActivity extends AppCompatActivity {
                 user = FirebaseAuth.getInstance().getCurrentUser();
                 String Username = user.getDisplayName();
                 Map<String, Object> user = new HashMap<>();
-                user.put("Username", Username);
+                user.put("Username",Username);
                 FireStore =  FirebaseFirestore.getInstance();
 
 //               Add a new document with a generated ID
