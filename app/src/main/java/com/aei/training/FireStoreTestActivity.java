@@ -22,6 +22,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreSettings;
 
 
 import java.util.HashMap;
@@ -56,25 +57,28 @@ public class FireStoreTestActivity extends AppCompatActivity {
                 profile = new UserProfileChangeRequest.Builder()
                         .setDisplayName(profileName.getText().toString())
                         .build();
+                FirebaseFirestoreSettings settings = new FirebaseFirestoreSettings.Builder()
+                        .setPersistenceEnabled(true)
+                        .build();
+                FireStore.setFirestoreSettings(settings);
             }
         });
 
         FireStoreS.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
-                user = FirebaseAuth.getInstance().getCurrentUser();
-                String Username = user.getDisplayName();
-                Map<String, Object> user = new HashMap<>();
-                user.put("Username",Username);
-                FireStore =  FirebaseFirestore.getInstance();
+           //     String Username = user.getDisplayName();
+                Map<String, Object > user2 = new HashMap<>();
+                user2.put("Username","test");
 
-//               Add a new document with a generated ID
-                FireStore.collection("Users")
-                        .add(user)
-                        .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                //it thinks it is a null references to our database using .collection, but Users does exist
+                //so I am lost to why it doesn't work
+                FireStore.collection("Users").document("zwOkmq7hNLVEqyzCDMjf")
+                        .set(user2)
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
-                            public void onSuccess(DocumentReference documentReference) {
-                              Log.d("Success","DocumentSnapshot added with ID: " + documentReference.getId());
+                            public void onSuccess(Void aVoid) {
+                              Log.d("Success","Document written");
                             }
                         })
                         .addOnFailureListener(new OnFailureListener() {
