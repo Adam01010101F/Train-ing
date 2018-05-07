@@ -46,33 +46,38 @@ public class FireStoreTestActivity extends AppCompatActivity {
         profileName = findViewById(R.id.ProfileName);
         submitName = findViewById(R.id.SubmitName);
         FireStoreS = findViewById(R.id.SubmitToFireStore);
+        FireStore =  FirebaseFirestore.getInstance();
+
+
+
 
         submitName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FireStore =  FirebaseFirestore.getInstance();
+
                 mFirebaseAuth = FirebaseAuth.getInstance();
                 user = FirebaseAuth.getInstance().getCurrentUser();
 
                 profile = new UserProfileChangeRequest.Builder()
                         .setDisplayName(profileName.getText().toString())
                         .build();
-                FirebaseFirestoreSettings settings = new FirebaseFirestoreSettings.Builder()
-                        .setPersistenceEnabled(true)
-                        .build();
-                FireStore.setFirestoreSettings(settings);
             }
         });
 
         FireStoreS.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
-           //     String Username = user.getDisplayName();
-                Map<String, Object > user2 = new HashMap<>();
-                user2.put("Username","test");
 
-                //it thinks it is a null references to our database using .collection, but Users does exist
-                //so I am lost to why it doesn't work
+                FirebaseFirestoreSettings settings = new FirebaseFirestoreSettings.Builder()
+                        .setPersistenceEnabled(true)
+                        .build();
+                FireStore.setFirestoreSettings(settings);
+                String Username = user.getDisplayName();
+                Map<String, Object > user2 = new HashMap<>();
+                //want to use the stored display name fo get the string error, just need this fixed
+                user2.put("Username",Username);
+
+
                 FireStore.collection("Users").document("zwOkmq7hNLVEqyzCDMjf")
                         .set(user2)
                         .addOnSuccessListener(new OnSuccessListener<Void>() {
