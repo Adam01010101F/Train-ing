@@ -31,7 +31,7 @@ import java.util.Random;
 
 import static com.aei.training.RegisterAccountTest.childAtPosition;
 import static org.hamcrest.Matchers.allOf;
-
+//still don't understand the childPosition and content.
 @LargeTest
 @RunWith(AndroidJUnit4.class)
 public class logInTest {
