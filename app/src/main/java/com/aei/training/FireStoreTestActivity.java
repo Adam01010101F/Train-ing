@@ -75,7 +75,7 @@ public class FireStoreTestActivity extends AppCompatActivity {
                 String Username = user.getDisplayName();
                 Map<String, Object > user2 = new HashMap<>();
                 //want to use the stored display name fo get the string error, just need this fixed
-                user2.put("Username",Username);
+                user2.put("Username", "Google");
 
 
                 FireStore.collection("Users").document("zwOkmq7hNLVEqyzCDMjf")
