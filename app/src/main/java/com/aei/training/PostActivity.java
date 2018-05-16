@@ -1,34 +1,24 @@
 package com.aei.training;
 
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.UserProfileChangeRequest;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreSettings;
-import com.google.gson.*;
 
 import java.util.HashMap;
 
-import io.grpc.Server;
-
-public class ThreadActivity extends AppCompatActivity{
+public class PostActivity extends AppCompatActivity{
     private FirebaseAuth fAuth;
     private FirebaseUser fUser;
     private FirebaseFirestore fStore;
@@ -105,11 +95,11 @@ public class ThreadActivity extends AppCompatActivity{
     }
 
     public void showPostBox(){
-        final  AlertDialog.Builder alertDialog = new AlertDialog.Builder(ThreadActivity.this);
+        final  AlertDialog.Builder alertDialog = new AlertDialog.Builder(PostActivity.this);
         alertDialog.setTitle("Add Post");
         alertDialog.setMessage("");
 
-        final EditText input = new EditText(ThreadActivity.this);
+        final EditText input = new EditText(PostActivity.this);
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.MATCH_PARENT);
