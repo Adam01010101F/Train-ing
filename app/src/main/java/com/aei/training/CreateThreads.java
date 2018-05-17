@@ -153,7 +153,6 @@ public class CreateThreads implements NavigationView.OnNavigationItemSelectedLis
             TextView textView = new TextView(this.appCompatActivity);
             textView.setLayoutParams(params);
             String textBuild = text;
-            final String textBuild2 = text;
             switch(i)
             {
                 case 1: textBuild = textBuild + " General";
@@ -174,7 +173,7 @@ public class CreateThreads implements NavigationView.OnNavigationItemSelectedLis
                 default: textBuild = textBuild + " in valid";
                 break;
             }
-
+            final String textBuild2 = text;
             textView.setText(textBuild);
 
 
