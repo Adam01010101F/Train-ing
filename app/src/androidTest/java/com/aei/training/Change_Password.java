@@ -64,9 +64,9 @@ public class Change_Password {
         appCompatEditText1.perform(click());
 
         ViewInteraction appCompEditText2 = onView(
-                allOf(withId(R.id.passField),
-                        RegisterAccountTest.childAtPosition(
-                                RegisterAccountTest.childAtPosition(
+                allOf(withId(R.id.emailField),
+                     childAtPosition(
+                                childAtPosition(
                                         withId(android.R.id.content),
                                         0),
                                 3),
