@@ -63,15 +63,38 @@ public class Change_Password {
                         isDisplayed()));
         appCompatEditText1.perform(click());
 
-        ViewInteraction appCompatEditText2 = onView(
-                allOf(withId(R.id.emailField), withText("ericaguirre@me.com"),
+        ViewInteraction appCompEditText2 = onView(
+                allOf(withId(R.id.passField),
+                        RegisterAccountTest.childAtPosition(
+                                RegisterAccountTest.childAtPosition(
+                                        withId(android.R.id.content),
+                                        0),
+                                3),
+                        isDisplayed()));
+        appCompEditText2.perform(replaceText("ericaguirre@me.com"), closeSoftKeyboard());
+        pressBack();
+
+        ViewInteraction appCompatEditText12 = onView(
+               allOf(withId(R.id.emailField), withText("ericaguirre@me.com"),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(android.R.id.content),
+                                        0),
+                                2),
+
+
+                        isDisplayed()));
+        appCompatEditText12.perform(pressImeActionButton());
+
+        ViewInteraction appCompatEditText13 = onView(
+                allOf(withId(R.id.passField),
                         childAtPosition(
                                 childAtPosition(
                                         withId(android.R.id.content),
                                         0),
                                 1),
                         isDisplayed()));
-        appCompatEditText2.perform(pressImeActionButton());
+        appCompatEditText13.perform(click());
 
         ViewInteraction appCompEditText3 = onView(
                 allOf(withId(R.id.passField),
@@ -87,7 +110,7 @@ public class Change_Password {
 
 
         ViewInteraction appCompatEditText4 = onView(
-                Matchers.allOf(withId(R.id.passField), withText("test12"),
+                allOf(withId(R.id.passField), withText("test12"),
                         childAtPosition(
                                 childAtPosition(
                                         withId(android.R.id.content),
@@ -97,7 +120,7 @@ public class Change_Password {
         appCompatEditText4.perform(pressImeActionButton());
 
         ViewInteraction appCompatButton = onView(
-                Matchers.allOf(withId(R.id.button), withText("Log In"),
+                allOf(withId(R.id.button), withText("Log In"),
                         childAtPosition(
                                 childAtPosition(
                                         withId(android.R.id.content),
@@ -138,7 +161,7 @@ public class Change_Password {
         }
 
         ViewInteraction appCompatEditText6 = onView(
-                Matchers.allOf(withId(R.id.passField),
+                allOf(withId(R.id.passField),
                         childAtPosition(
                                 childAtPosition(
                                         withId(android.R.id.content),
@@ -159,7 +182,7 @@ public class Change_Password {
         pressBack();
 
         ViewInteraction appCompatEditText8 = onView(
-                Matchers.allOf(withId(R.id.passField), withText("NewPass12"),
+                allOf(withId(R.id.passField), withText("NewPass12"),
                         childAtPosition(
                                 childAtPosition(
                                         withId(android.R.id.content),
@@ -169,7 +192,7 @@ public class Change_Password {
         appCompatEditText8.perform(pressImeActionButton());
 
         ViewInteraction appCompatEditText9 = onView(
-                Matchers.allOf(withId(R.id.confPassField),
+                allOf(withId(R.id.confPassField),
                         childAtPosition(
                                 childAtPosition(
                                         withId(android.R.id.content),
@@ -190,7 +213,7 @@ public class Change_Password {
         pressBack();
 
         ViewInteraction appCompatEditText11 = onView(
-                Matchers.allOf(withId(R.id.confPassField), withText("NewPass12"),
+                allOf(withId(R.id.confPassField), withText("NewPass12"),
                         childAtPosition(
                                 childAtPosition(
                                         withId(android.R.id.content),
@@ -200,7 +223,7 @@ public class Change_Password {
         appCompatEditText11.perform(pressImeActionButton());
 
         ViewInteraction appCompatButton2 = onView(
-                Matchers.allOf(withId(R.id.chngPassButton), withText("Submit"),
+                allOf(withId(R.id.chngPassButton), withText("Submit"),
                         childAtPosition(
                                 childAtPosition(
                                         withId(android.R.id.content),
