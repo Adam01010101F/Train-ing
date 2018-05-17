@@ -58,15 +58,18 @@ public class CreateThreads extends AppCompatActivity {
         this.appCompatActivity =appCompatActivity;
 
 
+
+
+        scrollView = new ScrollView(this.appCompatActivity);
         params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         params.setMargins(0,0,0,0);
 
         linearLayout = new LinearLayout(this.appCompatActivity);
         linearLayout.setLayoutParams(params);
         linearLayout.setOrientation(LinearLayout.VERTICAL);
-        scrollView = new ScrollView(this.appCompatActivity);
-        scrollView.addView(linearLayout);
 
+        scrollView.addView(linearLayout);
+        this.appCompatActivity.setContentView(scrollView);
         instaFire();
     }
 
@@ -91,7 +94,7 @@ public class CreateThreads extends AppCompatActivity {
             drawable.setColorFilter(lineColor, PorterDuff.Mode.MULTIPLY);
             TextView textView = new TextView(this.appCompatActivity);
             textView.setLayoutParams(params);
-            final String textBuild = text +"i";
+            final String textBuild = text +i;
             textView.setText(textBuild);
             textView.setPadding(20, 30, 0, 30);
             textView.setBackgroundResource(R.drawable.card_shadow);
@@ -110,11 +113,11 @@ public class CreateThreads extends AppCompatActivity {
                         //pretty sure you can pass a string throught intent, this allow us to know which
                         //thread user selected based on line.
 
-                        Intent intent = new Intent( CreateThreads.this, PostActivity.class);
-                        Bundle bundle1 = new Bundle();
-                        bundle1.putString("TrainLineThread", textBuild);
-                        intent.putExtras(bundle1);
-                        startActivityForResult(intent,1111);
+//                        Intent intent = new Intent( CreateThreads.this, PostActivity.class);
+//                        Bundle bundle1 = new Bundle();
+//                        bundle1.putString("TrainLineThread", textBuild);
+//                        intent.putExtras(bundle1);
+                        CreateThreads.appCompatActivity.startActivity(intent);
 
 
 

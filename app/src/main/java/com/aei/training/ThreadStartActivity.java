@@ -25,7 +25,7 @@ public class ThreadStartActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        createThreads = new CreateThreads(this, new Intent(ThreadStartActivity.this, CreateThreads.class));
+        createThreads = new CreateThreads(this, new Intent(ThreadStartActivity.this, PostActivity.class));
         metroRetriever= new MetroRetriever();
 
         handleLines();
