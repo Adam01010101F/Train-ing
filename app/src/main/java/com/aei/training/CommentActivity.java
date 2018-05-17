@@ -389,6 +389,7 @@ public class CommentActivity extends AppCompatActivity {
     }
 
     private void displayPosts(){
+        linearLayout.removeAllViews();
         fStore.collection(lineName).document(docName).collection("Comments")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -438,6 +439,7 @@ public class CommentActivity extends AppCompatActivity {
         text = text.substring(1,text.length()-1);
         if(!text.isEmpty()){
             text = text.replace("=",": ");
+            text= text.replace("UserName: ","");
             Drawable drawable = ResourcesCompat.getDrawable(this.getResources(), R.drawable.square, null);
             drawable.setColorFilter(lineColor, PorterDuff.Mode.MULTIPLY);
             TextView textView = new TextView(this);
@@ -448,7 +450,7 @@ public class CommentActivity extends AppCompatActivity {
             textView.setTypeface(Typeface.create("sans-serif-medium",Typeface.NORMAL));
             textView.setCompoundDrawablesWithIntrinsicBounds(null, null, drawable, null);
             textView.setTextColor(0xff4f4f4f);
-            textView.setTextSize(20);
+            textView.setTextSize(14);
             textView.setClickable(clickable);
             if(clickable){
 
