@@ -117,6 +117,7 @@ public class CreateThreads extends AppCompatActivity {
 //                        Bundle bundle1 = new Bundle();
 //                        bundle1.putString("TrainLineThread", textBuild);
 //                        intent.putExtras(bundle1);
+                        intent.putExtra("ID", textBuild);
                         CreateThreads.appCompatActivity.startActivity(intent);
 
 
