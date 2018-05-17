@@ -4,6 +4,7 @@ package com.aei.training;
  * Created by Eric on 5/16/2018.
  */
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
@@ -28,6 +29,7 @@ public class PostActivity extends AppCompatActivity {
     private Button genThread;
     private Button queryButton;
     private Button postButton;
+    private String name;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -38,6 +40,11 @@ public class PostActivity extends AppCompatActivity {
 //        genThread = findViewById(R.id.genThread);
         postButton = findViewById(R.id.AddPost);
 //        queryButton = findViewById(R);
+        Intent myCall = getIntent();
+        Bundle bundle = myCall.getExtras();
+
+        //should retreive the string Thread passed by the bundle by using the intent
+        name = bundle.getString("TrainLineThread");
 
         instaFire();
 
