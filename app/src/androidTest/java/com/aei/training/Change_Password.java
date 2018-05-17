@@ -41,9 +41,9 @@ import static org.hamcrest.Matchers.is;
 public class Change_Password {
 
     @Rule
-    public ActivityTestRule<ChangePassword> mChangePassWordTestRule = new ActivityTestRule<> (ChangePassword.class);
-    @Rule
     public ActivityTestRule<MainActivity> mMainActivityTestRule = new ActivityTestRule<> (MainActivity.class);
+//    @Rule
+//    public ActivityTestRule<ChangePassword> mChangePassWordTestRule = new ActivityTestRule<> (ChangePassword.class);
     @Test
     public void ChangePassword() {
 
@@ -54,24 +54,22 @@ public class Change_Password {
             e.printStackTrace();
         }
         ViewInteraction appCompatEditText1 = onView(
-                Matchers.allOf(withId(R.id.emailField),
+                allOf(withId(R.id.emailField),
                         childAtPosition(
                                 childAtPosition(
                                         withId(android.R.id.content),
                                         0),
-                                2),
+                                1),
                         isDisplayed()));
         appCompatEditText1.perform(click());
 
         ViewInteraction appCompatEditText2 = onView(
-                Matchers.allOf(withId(R.id.emailField), withText("ericaguirre@me.com"),
+                allOf(withId(R.id.emailField), withText("ericaguirre@me.com"),
                         childAtPosition(
                                 childAtPosition(
                                         withId(android.R.id.content),
                                         0),
-                                2),
-
-
+                                1),
                         isDisplayed()));
         appCompatEditText2.perform(pressImeActionButton());
 
