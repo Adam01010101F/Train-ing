@@ -458,7 +458,30 @@ public class PostActivity extends AppCompatActivity {
             textView.setTextSize(20);
             textView.setClickable(clickable);
             if(clickable){
+                textView.setOnLongClickListener(new View.OnLongClickListener() {
+                    @Override
+                    public boolean onLongClick(View v) {
+                        // text gets passed through to the new activity so the new activity can choose
+                        // what to display
+                        //linearLayout.removeAllViews();
+                        Log.d("Long", "LongClik");
+                        fStore.collection(lineName).document(ID.split(":")[0]).delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                Log.d(TAG, "DocumentSnapshot successfully deleted!");
+                            }
+                        })
+                                .addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        Log.w(TAG, "Error deleting document", e);
+                                    }
+                                });
+                        displayPosts();
+                        return true;
 
+                    }
+                });
                 textView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

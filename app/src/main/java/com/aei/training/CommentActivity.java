@@ -452,6 +452,7 @@ public class CommentActivity extends AppCompatActivity {
             textView.setTextColor(0xff4f4f4f);
             textView.setTextSize(14);
             textView.setClickable(clickable);
+
             if(clickable){
 
                 textView.setOnClickListener(new View.OnClickListener() {
