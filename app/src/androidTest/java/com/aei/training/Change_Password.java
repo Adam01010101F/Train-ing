@@ -69,22 +69,22 @@ public class Change_Password {
                                 childAtPosition(
                                         withId(android.R.id.content),
                                         0),
-                                3),
+                                1),
                         isDisplayed()));
         appCompEditText2.perform(replaceText("ericaguirre@me.com"), closeSoftKeyboard());
-        pressBack();
-
-        ViewInteraction appCompatEditText12 = onView(
-               allOf(withId(R.id.emailField), withText("ericaguirre@me.com"),
-                        childAtPosition(
-                                childAtPosition(
-                                        withId(android.R.id.content),
-                                        0),
-                                2),
 
 
-                        isDisplayed()));
-        appCompatEditText12.perform(pressImeActionButton());
+//        ViewInteraction appCompatEditText12 = onView(
+//               allOf(withId(R.id.emailField), withText("ericaguirre@me.com"),
+//                        childAtPosition(
+//                                childAtPosition(
+//                                        withId(android.R.id.content),
+//                                        0),
+//                                2),
+//
+//
+//                        isDisplayed()));
+//        appCompatEditText12.perform(pressImeActionButton());
 
         ViewInteraction appCompatEditText13 = onView(
                 allOf(withId(R.id.passField),
@@ -92,7 +92,7 @@ public class Change_Password {
                                 childAtPosition(
                                         withId(android.R.id.content),
                                         0),
-                                1),
+                                2),
                         isDisplayed()));
         appCompatEditText13.perform(click());
 
@@ -102,22 +102,22 @@ public class Change_Password {
                                 RegisterAccountTest.childAtPosition(
                                         withId(android.R.id.content),
                                         0),
-                                3),
+                                2),
                         isDisplayed()));
         appCompEditText3.perform(replaceText("test12"), closeSoftKeyboard());
-        pressBack();
+//        pressBack();
 
 
 
-        ViewInteraction appCompatEditText4 = onView(
-                allOf(withId(R.id.passField), withText("test12"),
-                        childAtPosition(
-                                childAtPosition(
-                                        withId(android.R.id.content),
-                                        0),
-                                3),
-                        isDisplayed()));
-        appCompatEditText4.perform(pressImeActionButton());
+//        ViewInteraction appCompatEditText4 = onView(
+//                allOf(withId(R.id.passField), withText("test12"),
+//                        childAtPosition(
+//                                childAtPosition(
+//                                        withId(android.R.id.content),
+//                                        0),
+//                                3),
+//                        isDisplayed()));
+//        appCompatEditText4.perform(pressImeActionButton());
 
         ViewInteraction appCompatButton = onView(
                 allOf(withId(R.id.button), withText("Log In"),
@@ -125,13 +125,13 @@ public class Change_Password {
                                 childAtPosition(
                                         withId(android.R.id.content),
                                         0),
-                                5),
+                                0),
                         isDisplayed()));
         appCompatButton.perform(click());
 
 
         try {
-            Thread.sleep(500);
+            Thread.sleep(2000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -176,7 +176,7 @@ public class Change_Password {
                                 RegisterAccountTest.childAtPosition(
                                         withId(android.R.id.content),
                                         0),
-                                3),
+                                2),
                         isDisplayed()));
         appCompEditText7.perform(replaceText("NewPass12"), closeSoftKeyboard());
         pressBack();
