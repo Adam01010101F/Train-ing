@@ -322,7 +322,7 @@ public class PostActivity extends AppCompatActivity {
 
     public void showPostBox() {
         final AlertDialog.Builder alertDialog = new AlertDialog.Builder(PostActivity.this);
-        alertDialog.setTitle("Add Post");
+        alertDialog.setTitle("Add thread");
         alertDialog.setMessage("");
 
         final EditText topicInput = new EditText(PostActivity.this);
@@ -350,29 +350,7 @@ public class PostActivity extends AppCompatActivity {
                 toast.show();
                 postThread(userTopic, userInput, displayName, TrainThreadLine);
 
-                //create a thread
 
-         /*           try {
-//                        fStore.collection("Post").document(threadId).set
-
-                    } catch (Exception e) {
-                        toast = Toast.makeText(getApplicationContext(), "Account was not found", Toast.LENGTH_LONG);
-                        toast.show();
-                    }*/
-        /*        try {
-
-
-                } catch (Exception e) {
-                    toast = Toast.makeText(getApplicationContext(), "Account was not found", Toast.LENGTH_LONG);
-                    toast.show();
-                }*/
-
-//                } else {
-//
-//                    Toast toast = Toast.makeText(getApplicationContext(), "FireBase email was not entered, please click delete again", Toast.LENGTH_LONG);
-//                    toast.show();
-//
-//                }
             }
 
         });

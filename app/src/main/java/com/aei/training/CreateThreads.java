@@ -152,8 +152,32 @@ public class CreateThreads implements NavigationView.OnNavigationItemSelectedLis
             drawable.setColorFilter(lineColor, PorterDuff.Mode.MULTIPLY);
             TextView textView = new TextView(this.appCompatActivity);
             textView.setLayoutParams(params);
-            final String textBuild = text +i;
+            String textBuild = text;
+            final String textBuild2 = text;
+            switch(i)
+            {
+                case 1: textBuild = textBuild + " General";
+                break;
+
+                case 2: textBuild =  textBuild + " Safety";
+                break;
+
+                case 3: textBuild = textBuild + " Entertainment";
+                break;
+
+                case 4: textBuild = textBuild + " Food";
+                break;
+
+                case 5: textBuild = textBuild + " Suggestions";
+                break;
+
+                default: textBuild = textBuild + " in valid";
+                break;
+            }
+
             textView.setText(textBuild);
+
+
             textView.setPadding(20, 30, 0, 30);
             textView.setBackgroundResource(R.drawable.card_shadow);
             textView.setTypeface(Typeface.create("sans-serif-medium", Typeface.NORMAL));
@@ -175,7 +199,8 @@ public class CreateThreads implements NavigationView.OnNavigationItemSelectedLis
 //                        Bundle bundle1 = new Bundle();
 //                        bundle1.putString("TrainLineThread", textBuild);
 //                        intent.putExtras(bundle1);
-                        intent.putExtra("ID", textBuild);
+
+                        intent.putExtra("ID", textBuild2);
                         CreateThreads.appCompatActivity.startActivity(intent);
 
 
