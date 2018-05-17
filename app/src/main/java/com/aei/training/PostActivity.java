@@ -5,11 +5,16 @@ package com.aei.training;
  */
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.PorterDuff;
+import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
+import android.support.v4.content.res.ResourcesCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AlertDialog;
@@ -24,6 +29,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -47,7 +54,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class PostActivity extends AppCompatActivity {
+    private LinearLayout linearLayout;
+    private LinearLayout.LayoutParams params;
+    private ScrollView scrollView;
     Toolbar tb;
+    private ConstraintLayout cl;
     private DrawerLayout drawerLayout;
     private FirebaseAuth fAuth;
     private FirebaseUser fUser;
@@ -63,6 +74,18 @@ public class PostActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.post_drawer);
         drawerLayout = findViewById(R.id.drawer_layout);
+        cl= findViewById(R.id.const_layout);
+        scrollView = new ScrollView(this);
+        params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        params.setMargins(0,0,0,0);
+        linearLayout = new LinearLayout(this);
+        linearLayout.setLayoutParams(params);
+        linearLayout.setOrientation(LinearLayout.VERTICAL);
+
+        scrollView.addView(linearLayout);
+        cl.addView(scrollView);
+        //drawerLayout.addView(scrollView);
+
 
         tb = (Toolbar) findViewById(R.id.my_toolbar);
         tb.setLayoutParams(new LinearLayout.LayoutParams(
@@ -207,6 +230,7 @@ public class PostActivity extends AppCompatActivity {
                     }
                 });
         instaFire();
+        createCommentCard("this is a test of the comment cards",0xffffffff,false);
 
 
 
@@ -401,6 +425,36 @@ public class PostActivity extends AppCompatActivity {
                     }
                 });
 
+    }
+
+    public void createCommentCard(String text, int lineColor, boolean clickable){
+
+        Drawable drawable = ResourcesCompat.getDrawable(this.getResources(), R.drawable.square, null);
+        drawable.setColorFilter(lineColor, PorterDuff.Mode.MULTIPLY);
+        TextView textView = new TextView(this);
+        textView.setLayoutParams(params);
+        textView.setText(text);
+        textView.setPadding(20,30,0,30);
+        textView.setBackgroundResource(R.drawable.card_shadow);
+        textView.setTypeface(Typeface.create("sans-serif-medium",Typeface.NORMAL));
+        textView.setCompoundDrawablesWithIntrinsicBounds(null, null, drawable, null);
+        textView.setTextColor(0xff4f4f4f);
+        textView.setTextSize(12);
+        textView.setClickable(clickable);
+        if(clickable){
+
+            textView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    // text gets passed through to the new activity so the new activity can choose
+                    // what to display
+
+
+                }
+            });
+        }
+
+        linearLayout.addView(textView);
     }
 
 }

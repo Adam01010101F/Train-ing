@@ -2,7 +2,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:id="@+id/act_thread" >
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/my_toolbar"
@@ -10,7 +11,7 @@
         android:layout_height="168px"
         />
 <android.support.constraint.ConstraintLayout
-
+    android:id="@+id/const_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
