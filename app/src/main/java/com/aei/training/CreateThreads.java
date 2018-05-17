@@ -94,7 +94,7 @@ public class CreateThreads extends AppCompatActivity {
             drawable.setColorFilter(lineColor, PorterDuff.Mode.MULTIPLY);
             TextView textView = new TextView(this.appCompatActivity);
             textView.setLayoutParams(params);
-            final String textBuild = text +"i";
+            final String textBuild = text +i;
             textView.setText(textBuild);
             textView.setPadding(20, 30, 0, 30);
             textView.setBackgroundResource(R.drawable.card_shadow);
