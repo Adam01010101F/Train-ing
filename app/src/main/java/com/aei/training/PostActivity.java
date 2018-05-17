@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -28,7 +29,7 @@ public class PostActivity extends AppCompatActivity {
     private FirebaseFirestore fStore;
     private Button genThread;
     private Button queryButton;
-    private Button postButton;
+    private FloatingActionButton postButton;
     private String name;
 
     @Override
@@ -49,18 +50,18 @@ public class PostActivity extends AppCompatActivity {
         instaFire();
 
         //Code for testing
-        genThread.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                generateTempThread();
-            }
-        });
-        queryButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                queryPosts();
-            }
-        });
+//        genThread.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                generateTempThread();
+//            }
+//        });
+//        queryButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                queryPosts();
+//            }
+//        });
         postButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View V) {

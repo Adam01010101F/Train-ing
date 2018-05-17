@@ -113,11 +113,11 @@ public class CreateThreads extends AppCompatActivity {
                         //pretty sure you can pass a string throught intent, this allow us to know which
                         //thread user selected based on line.
 
-                        Intent intent = new Intent( CreateThreads.this, PostActivity.class);
-                        Bundle bundle1 = new Bundle();
-                        bundle1.putString("TrainLineThread", textBuild);
-                        intent.putExtras(bundle1);
-                        startActivityForResult(intent,1111);
+//                        Intent intent = new Intent( CreateThreads.this, PostActivity.class);
+//                        Bundle bundle1 = new Bundle();
+//                        bundle1.putString("TrainLineThread", textBuild);
+//                        intent.putExtras(bundle1);
+                        CreateThreads.appCompatActivity.startActivity(intent);
 
 
 
