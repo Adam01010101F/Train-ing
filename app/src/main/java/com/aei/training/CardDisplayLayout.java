@@ -9,7 +9,9 @@ import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.content.res.ResourcesCompat;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -17,11 +19,13 @@ import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.support.v7.widget.Toolbar;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -36,6 +40,7 @@ public class CardDisplayLayout implements NavigationView.OnNavigationItemSelecte
     private DrawerLayout drawerLayout;
     private Menu menu;
     private NavigationView navigationView;
+    private Toolbar tb;
     private LinearLayout linearLayout;
     private LinearLayout.LayoutParams params;
     private DrawerLayout.LayoutParams dParams;
@@ -49,7 +54,6 @@ public class CardDisplayLayout implements NavigationView.OnNavigationItemSelecte
 
 
         drawerLayout = new DrawerLayout(this.appCompatActivity);
-
 
         dParams = new DrawerLayout.LayoutParams( DrawerLayout.LayoutParams.MATCH_PARENT ,  DrawerLayout.LayoutParams.MATCH_PARENT);
         dParams.gravity= Gravity.START;
@@ -80,9 +84,24 @@ public class CardDisplayLayout implements NavigationView.OnNavigationItemSelecte
         params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         params.setMargins(0,0,0,0);
 
+        tb = new Toolbar(this.appCompatActivity);
+        tb.setLayoutParams(new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT, 168));
+
+        tb.setPopupTheme(R.style.AppTheme);
+        tb.setBackgroundColor(this.appCompatActivity.getResources().getColor(R.color.colorPrimary));
+        tb.setTitle("This is the title");
+        tb.setVisibility(View.VISIBLE);
+        tb.setLogo(R.drawable.ic_menu);
+        this.appCompatActivity.setSupportActionBar(tb);
+//        ActionBar actionbar = this.appCompatActivity.getSupportActionBar();
+//        actionbar.setDisplayHomeAsUpEnabled(true);
+//        actionbar.setHomeAsUpIndicator(R.drawable.ic_menu);
+
         linearLayout = new LinearLayout(this.appCompatActivity);
         linearLayout.setLayoutParams(params);
         linearLayout.setOrientation(LinearLayout.VERTICAL);
+        linearLayout.addView(tb,0);
         scrollView.addView(linearLayout);
         drawerLayout.addView(scrollView);
         drawerLayout.addView(navigationView);
@@ -90,6 +109,16 @@ public class CardDisplayLayout implements NavigationView.OnNavigationItemSelecte
 
         this.appCompatActivity.setContentView(drawerLayout);
 
+
+
+tb.setClickable(true);
+    tb.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            drawerLayout.openDrawer(GravityCompat.START);
+
+        }
+    });
 
 
 
@@ -125,6 +154,7 @@ public class CardDisplayLayout implements NavigationView.OnNavigationItemSelecte
 
         linearLayout.addView(textView);
     }
+
 
 
     @Override
