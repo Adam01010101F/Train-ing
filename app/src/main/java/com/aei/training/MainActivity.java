@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
         //firebasse auto-log in
         if(mFirebaseAuth.getCurrentUser() != null)
         {
-            Intent intent = new Intent(MainActivity.this, FireStoreTestActivity.class); //change back
+            Intent intent = new Intent(MainActivity.this, LineSelectActivity.class); //change back
             startActivity(intent);
         }
         forgotPass.setOnClickListener(new View.OnClickListener() {
