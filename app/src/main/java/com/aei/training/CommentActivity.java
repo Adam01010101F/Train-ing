@@ -350,7 +350,7 @@ public class CommentActivity extends AppCompatActivity {
                 String TrainThreadLine = docName;
                 Toast toast = Toast.makeText(getApplicationContext(), "Posting...", Toast.LENGTH_SHORT);
                 toast.show();
-                postThread(userTopic, userInput, displayName, TrainThreadLine);
+                postThread(userTopic, userInput, displayName);
 
                 //create a thread
 
@@ -406,7 +406,7 @@ public class CommentActivity extends AppCompatActivity {
                     }
                 });
     }
-    private void postThread(String userTopic, String userInput, String  displayName, String TrainThreadLine)
+    private void postThread(String userTopic, String userInput, String  displayName)
     {
         Map<String,Object> data =  new HashMap<>();
         data.put("UserName", displayName);
@@ -414,7 +414,7 @@ public class CommentActivity extends AppCompatActivity {
 
 
 
-        fStore.collection(TrainThreadLine)
+        fStore.collection(lineName).document(docName).collection("Comments")
                 .add(data)
                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>(){
 
