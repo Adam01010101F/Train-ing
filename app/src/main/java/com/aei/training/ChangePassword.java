@@ -5,8 +5,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -22,6 +25,8 @@ import com.google.firebase.auth.FirebaseUser;
 
 
 public class ChangePassword extends AppCompatActivity{
+    Toolbar tb;
+    private DrawerLayout drawerLayout;
     private EditText oldPass;
     private EditText newPass;
     private EditText confPass;
@@ -32,11 +37,33 @@ public class ChangePassword extends AppCompatActivity{
     @Override
     protected  void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.pass_drawer);
+        drawerLayout =findViewById(R.id.drawer_layout);
+
+        tb = (Toolbar) findViewById(R.id.my_toolbar);
+        tb.setLayoutParams(new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT, 168));
+
+        tb.setPopupTheme(R.style.AppTheme);
+        tb.setBackgroundColor(this.getResources().getColor(R.color.colorPrimary));
+        tb.setTitle("This is the title");
+        tb.setVisibility(View.VISIBLE);
+        tb.setLogo(R.drawable.ic_menu);
+        setSupportActionBar(tb);
+
+        tb.setClickable(true);
+        tb.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                drawerLayout.openDrawer(GravityCompat.START);
+
+            }
+        });
         //Setting Firebase vars
         fireAuth = FirebaseAuth.getInstance();
         user = fireAuth.getCurrentUser();
         //Setting UI cars
-        setContentView(R.layout.pass_drawer);
+
         newPass =(EditText) findViewById(R.id.passField);
         confPass = (EditText) findViewById(R.id.confPassField);
         changePass = (Button) findViewById(R.id.chngPassButton);
@@ -74,7 +101,8 @@ public class ChangePassword extends AppCompatActivity{
                             startActivity(it);
                         }
                         if(item.getTitle().equals("Boards")){
-
+                            Intent it = new Intent(ChangePassword.this,ThreadStartActivity.class);
+                            startActivity(it);
                         }
                         if(item.getTitle().equals("Log Out")){
                             FirebaseAuth.getInstance().signOut();

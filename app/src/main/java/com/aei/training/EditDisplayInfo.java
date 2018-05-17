@@ -100,7 +100,8 @@ public class EditDisplayInfo extends AppCompatActivity{
                                     startActivity(it);
                                 }
                                 if(item.getTitle().equals("Boards")){
-
+                                    Intent it = new Intent(EditDisplayInfo.this,ThreadStartActivity.class);
+                                    startActivity(it);
                                 }
                                 if(item.getTitle().equals("Log Out")){
                                     FirebaseAuth.getInstance().signOut();

@@ -1,12 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation ="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.aei.training.ChangeEmail">
 
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/my_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="168px"
+        />
+    <TextView
+        android:id="@+id/EmailTitle"
+        android:layout_width="332dp"
+        android:layout_height="158dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:text="Change Email"
+        android:textColor="#000000"
+        android:textSize="70dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
     <EditText
         android:id="@+id/Current_Email"
         android:layout_width="match_parent"
@@ -35,18 +54,18 @@
         android:id="@+id/EmailChange"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="10dp"
-        android:paddingBottom = "10dp"
-
-        android:layout_marginTop = "25dp"
-        android:layout_marginBottom = "0dp"
+        android:layout_marginBottom="0dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
 
-        android:text="Submit email change"
-        android:textSize="20dp"
-        android:textColor="#ffffff"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="25dp"
         android:background="@drawable/roundedbutton"
+        android:paddingBottom="10dp"
+
+        android:paddingTop="10dp"
+        android:text="Submit"
+        android:textColor="#ffffff"
+        android:textSize="20dp"
 
         />
 
