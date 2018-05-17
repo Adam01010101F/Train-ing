@@ -49,7 +49,7 @@ public class PostActivity extends AppCompatActivity {
     private FirebaseUser fUser;
     private FirebaseFirestore fStore;
     private Button genThread;
-    private Button queryButton;
+    private FloatingActionButton queryButton;
     private FloatingActionButton postButton;
     private String lineName;
     private static final String TAG = "DocSnippets";
@@ -58,7 +58,7 @@ public class PostActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.post_drawer);
-        drawerLayout =findViewById(R.id.drawer_layout);
+        drawerLayout = findViewById(R.id.drawer_layout);
 
         tb = (Toolbar) findViewById(R.id.my_toolbar);
         tb.setLayoutParams(new LinearLayout.LayoutParams(
@@ -83,6 +83,7 @@ public class PostActivity extends AppCompatActivity {
         String threadId = "QDQenIbvuihORLoawCbE";   // Thread ID specifically for testing.
 //        genThread = findViewById(R.id.genThread);
         postButton = findViewById(R.id.AddPost);
+        queryButton = findViewById(R.id.query);
 //        queryButton = findViewById(R);
         //retreives the string Thread passed by the bundle by using the intent
         lineName = getIntent().getStringExtra("ID");
@@ -98,39 +99,39 @@ public class PostActivity extends AppCompatActivity {
                         // Add code here to update the UI based on the item selected
                         // For example, swap UI fragments here
 
-                        if(item.getTitle().equals("View Profile")){
-                            Intent it = new Intent(PostActivity.this,ViewAccountActivity.class);
+                        if (item.getTitle().equals("View Profile")) {
+                            Intent it = new Intent(PostActivity.this, ViewAccountActivity.class);
                             startActivity(it);
                         }
-                        if(item.getTitle().equals("Change Email")){
-                            Intent it = new Intent(PostActivity.this,ChangeEmail.class);
+                        if (item.getTitle().equals("Change Email")) {
+                            Intent it = new Intent(PostActivity.this, ChangeEmail.class);
                             startActivity(it);
                         }
-                        if(item.getTitle().equals("Change Password")){
-                            Intent it = new Intent(PostActivity.this,ChangePassword.class);
+                        if (item.getTitle().equals("Change Password")) {
+                            Intent it = new Intent(PostActivity.this, ChangePassword.class);
                             startActivity(it);
                         }
-                        if(item.getTitle().equals("Change Display Name")){
-                            Intent it = new Intent(PostActivity.this,ChangePassword.class);
+                        if (item.getTitle().equals("Change Display Name")) {
+                            Intent it = new Intent(PostActivity.this, ChangePassword.class);
                             startActivity(it);
                         }
-                        if(item.getTitle().equals("Line Information")){
+                        if (item.getTitle().equals("Line Information")) {
 
-                            Intent it = new Intent(PostActivity.this,LineSelectActivity.class);
+                            Intent it = new Intent(PostActivity.this, LineSelectActivity.class);
                             startActivity(it);
                         }
-                        if(item.getTitle().equals("Boards")){
-                            Intent it = new Intent(PostActivity.this,ThreadStartActivity.class);
+                        if (item.getTitle().equals("Boards")) {
+                            Intent it = new Intent(PostActivity.this, ThreadStartActivity.class);
                             startActivity(it);
                         }
-                        if(item.getTitle().equals("Log Out")){
+                        if (item.getTitle().equals("Log Out")) {
                             FirebaseAuth.getInstance().signOut();
                             Intent intent = new Intent(PostActivity.this, MainActivity.class);
                             startActivity(intent);
                         }
-                        if(item.getTitle().equals("Delete Account")){
+                        if (item.getTitle().equals("Delete Account")) {
                             //creates AlertDialog for deletion of user account when deletion button clicked
-                            final  AlertDialog.Builder alertDialog = new AlertDialog.Builder(PostActivity.this);
+                            final AlertDialog.Builder alertDialog = new AlertDialog.Builder(PostActivity.this);
                             alertDialog.setTitle("DELETE ACCOUNT");
                             alertDialog.setMessage("Enter FireBase Email to delete FireBase account");
 
@@ -140,24 +141,24 @@ public class PostActivity extends AppCompatActivity {
                                     LinearLayout.LayoutParams.MATCH_PARENT);
                             input.setLayoutParams(lp);
                             alertDialog.setView(input);
-                            alertDialog.setPositiveButton("ENTER",new DialogInterface.OnClickListener() {
+                            alertDialog.setPositiveButton("ENTER", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int whichButton) {
 
                                     String userIn = input.getText().toString();
-                                    userIn =  userIn.trim();
+                                    userIn = userIn.trim();
                                     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                                    String EmailFire="";
-                                    try{
+                                    String EmailFire = "";
+                                    try {
                                         EmailFire = user.getEmail();
-                                    }catch(Exception e){
+                                    } catch (Exception e) {
 
                                     }
 
-                                    if(userIn.equals(EmailFire)) {
+                                    if (userIn.equals(EmailFire)) {
 
                                         Toast toast = Toast.makeText(getApplicationContext(), "Deleting your account", Toast.LENGTH_LONG);
                                         toast.show();
-                                        try{
+                                        try {
 
                                             user.delete()
                                                     .addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -175,7 +176,7 @@ public class PostActivity extends AppCompatActivity {
                                                         }
                                                     });
 
-                                        }catch (Exception e){
+                                        } catch (Exception e) {
                                             toast = Toast.makeText(getApplicationContext(), "Account was not found", Toast.LENGTH_LONG);
                                             toast.show();
                                         }
@@ -221,9 +222,14 @@ public class PostActivity extends AppCompatActivity {
                 showPostBox();
             }
         });
-        getQuery(threadId);
-    }
+        queryButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View V) {
+                queryPosts();
+            }
+        });
 
+    }
     private void generateTempThread() {
         HashMap<String, Object> tThread = new HashMap<>();
         tThread.put("Title", "This is a test");
@@ -240,6 +246,34 @@ public class PostActivity extends AppCompatActivity {
      * Find a way to order them(Server Timestamp as posts are created?)
      */
     private void queryPosts() {
+        final AlertDialog.Builder alertDialog = new AlertDialog.Builder(PostActivity.this);
+        alertDialog.setTitle("Search Post by Topic");
+        alertDialog.setMessage("");
+        final EditText searchTopic = new EditText(PostActivity.this);
+        searchTopic.setHint("Enter Topic");
+        searchTopic.setTextColor(000000);
+
+        alertDialog.setView(searchTopic);
+        alertDialog.setPositiveButton("Search", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+                //assume they have a display name by now
+                String search = searchTopic.getText().toString();
+                String displayName =  fUser.getDisplayName();
+
+                Toast toast = Toast.makeText(getApplicationContext(), "Seaerching...", Toast.LENGTH_SHORT);
+                toast.show();
+
+
+            }
+
+        });
+        alertDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+                //pass
+            }
+        });
+        AlertDialog b = alertDialog.create();
+        b.show();
 
     }
 
@@ -254,9 +288,6 @@ public class PostActivity extends AppCompatActivity {
         fStore.setFirestoreSettings(settings);
     }
 
-    public void getQuery(String id) {
-
-    }
 
     public void showPostBox() {
         final AlertDialog.Builder alertDialog = new AlertDialog.Builder(PostActivity.this);
