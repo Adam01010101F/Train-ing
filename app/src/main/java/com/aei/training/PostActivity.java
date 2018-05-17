@@ -1,7 +1,7 @@
 package com.aei.training;
 
 /**
- * Created by Eric on 5/16/2018.
+ * Created by Adam on 5/16/2018.
  */
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -36,7 +36,7 @@ public class PostActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_thread_posts);
 //        String threadId= getIntent().getStringExtra("ID");
-        String threadId = "QDQenIbvuihORLoawCbE";
+        String threadId = "QDQenIbvuihORLoawCbE";   // Thread ID specifically for testing.
 //        genThread = findViewById(R.id.genThread);
         postButton = findViewById(R.id.AddPost);
 //        queryButton = findViewById(R);
@@ -147,6 +147,10 @@ public class PostActivity extends AppCompatActivity {
         });
         AlertDialog b = alertDialog.create();
         b.show();
+    }
+
+    private void displayPosts(){
+
     }
 
 }

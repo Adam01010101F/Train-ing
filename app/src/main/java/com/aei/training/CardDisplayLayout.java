@@ -151,7 +151,8 @@ public class CardDisplayLayout implements NavigationView.OnNavigationItemSelecte
             this.appCompatActivity.startActivity(it);
         }
         if(item.equals(menu.getItem(5))){
-
+            Intent intent = new Intent(this.appCompatActivity, ThreadStartActivity.class);
+            this.appCompatActivity.startActivity(intent);
         }
         if(item.equals(menu.getItem(6))){
             FirebaseAuth.getInstance().signOut();
