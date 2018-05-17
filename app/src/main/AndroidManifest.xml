@@ -38,6 +38,7 @@
         <activity android:name=".PostActivity"/>
         <activity android:name=".ThreadStartActivity"/>
         <activity android:name=".FireStoreTestActivity"/>
+        <activity android:name=".CommentActivity"/>
 
 
 

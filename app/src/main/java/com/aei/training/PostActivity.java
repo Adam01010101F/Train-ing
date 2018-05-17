@@ -141,7 +141,7 @@ public class PostActivity extends AppCompatActivity {
                             startActivity(it);
                         }
                         if (item.getTitle().equals("Change Display Name")) {
-                            Intent it = new Intent(PostActivity.this, ChangePassword.class);
+                            Intent it = new Intent(PostActivity.this, EditDisplayInfo.class);
                             startActivity(it);
                         }
                         if (item.getTitle().equals("Line Information")) {
@@ -387,6 +387,7 @@ public class PostActivity extends AppCompatActivity {
     }
 
     private void displayPosts(){
+
         fStore.collection(lineName)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -395,7 +396,9 @@ public class PostActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Log.d(TAG, document.getId() + " =>" + document.getData());
-                                createThreadCard(document.getData().toString(),0xffffffff,true);
+                                //Log.d(TAG, document.getId() + " =>" + document.);
+
+                                createThreadCard(document.getData().toString(),0xffffffff,true,document.getId() +":"+lineName);
                             }
                         } else {
                             Log.d(TAG, "Error getting documents: ", task.getException());
@@ -431,7 +434,7 @@ public class PostActivity extends AppCompatActivity {
 
     }
 
-    public void createThreadCard(String text, int lineColor, boolean clickable){
+    public void createThreadCard(String text, int lineColor, boolean clickable, final String ID){
         text = text.substring(1,text.length()-1);
         if(!text.isEmpty()){
             text = text.replace("=",": ");
@@ -455,6 +458,9 @@ public class PostActivity extends AppCompatActivity {
                         // text gets passed through to the new activity so the new activity can choose
                         // what to display
                         //linearLayout.removeAllViews();
+                        Intent intent = new Intent(PostActivity.this, CommentActivity.class);
+                        intent.putExtra("ID", ID);
+                        startActivity(intent);
 
 
                     }
