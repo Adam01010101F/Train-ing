@@ -230,7 +230,10 @@ public class PostActivity extends AppCompatActivity {
                     }
                 });
         instaFire();
-        createCommentCard("this is a test of the comment cards",0xffffffff,false);
+        for(int i =0; i < 100; i++){
+            createCommentCard("this is a test of the comment cards",0xffffffff,false);
+        }
+
 
 
 
