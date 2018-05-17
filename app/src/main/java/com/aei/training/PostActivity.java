@@ -231,7 +231,7 @@ public class PostActivity extends AppCompatActivity {
                 });
         instaFire();
         for(int i =0; i < 100; i++){
-            createCommentCard("this is a test of the comment cards",0xffffffff,false);
+            createThreadCard("this is a test of the Thread cards",0xffffffff,false);
         }
 
 
@@ -430,7 +430,7 @@ public class PostActivity extends AppCompatActivity {
 
     }
 
-    public void createCommentCard(String text, int lineColor, boolean clickable){
+    public void createThreadCard(String text, int lineColor, boolean clickable){
 
         Drawable drawable = ResourcesCompat.getDrawable(this.getResources(), R.drawable.square, null);
         drawable.setColorFilter(lineColor, PorterDuff.Mode.MULTIPLY);
@@ -442,7 +442,7 @@ public class PostActivity extends AppCompatActivity {
         textView.setTypeface(Typeface.create("sans-serif-medium",Typeface.NORMAL));
         textView.setCompoundDrawablesWithIntrinsicBounds(null, null, drawable, null);
         textView.setTextColor(0xff4f4f4f);
-        textView.setTextSize(12);
+        textView.setTextSize(20);
         textView.setClickable(clickable);
         if(clickable){
 
@@ -459,5 +459,6 @@ public class PostActivity extends AppCompatActivity {
 
         linearLayout.addView(textView);
     }
+
 
 }
