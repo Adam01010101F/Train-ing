@@ -59,7 +59,9 @@ public class ThreadStartActivity extends AppCompatActivity {
 
                 String color = response.body().getBg_color();
                 int clr = (int)Long.parseLong(color.replace("#","ff").toUpperCase(),16);
-                createThreads.createThreads(trainLine.getDisplay_name(),clr, true,trainLine.getId());
+                Log.d("Train ID", trainLine.getId());
+                createThreads.createThreads(trainLine.getDisplay_name(),clr, true,trainLine.getDisplay_name());
+
 
             }
 

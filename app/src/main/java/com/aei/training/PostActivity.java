@@ -110,12 +110,12 @@ public class PostActivity extends AppCompatActivity {
         String threadId = "QDQenIbvuihORLoawCbE";   // Thread ID specifically for testing.
 //        genThread = findViewById(R.id.genThread);
         postButton = findViewById(R.id.AddPost);
-        queryButton = findViewById(R.id.query);
-        genThreadPost = findViewById(R.id.allOfALine);
+//        queryButton = findViewById(R.id.query);
+//        genThreadPost = findViewById(R.id.allOfALine);
 //        queryButton = findViewById(R);
         //retreives the string Thread passed by the bundle by using the intent
-        //lineName = getIntent().getStringExtra("ID");
-        lineName ="Metro Blue Line (801)1";
+        lineName = getIntent().getStringExtra("ID");
+        //lineName ="Metro Blue Line (801)1";
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(
                 new NavigationView.OnNavigationItemSelectedListener() {
@@ -237,26 +237,26 @@ public class PostActivity extends AppCompatActivity {
 
 
 
-        genThreadPost.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-                displayPosts();
-            }
-        });
+//        genThreadPost.setOnClickListener(new View.OnClickListener()
+//        {
+//            @Override
+//            public void onClick(View v)
+//            {
+//                displayPosts();
+//            }
+//        });
         postButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View V) {
                 showPostBox();
             }
         });
-        queryButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View V) {
-                queryPosts();
-            }
-        });
+//        queryButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View V) {
+//                queryPosts();
+//            }
+//        });
 
     }
     private void generateTempThread() {
@@ -343,7 +343,8 @@ public class PostActivity extends AppCompatActivity {
   //assume they have a display name by now
                 String userTopic = topicInput.getText().toString();
                 String userInput = comment.getText().toString();
-                String displayName =  fUser.getDisplayName();
+                String displayName =  fUser.getDisplayName().toString();
+                Log.d("nam", displayName);
                 String TrainThreadLine = lineName;
                 Toast toast = Toast.makeText(getApplicationContext(), "Posting...", Toast.LENGTH_SHORT);
                 toast.show();
@@ -394,7 +395,7 @@ public class PostActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Log.d(TAG, document.getId() + " =>" + document.getData());
-                                createThreadCard(document.getData().toString(),0xffffffff,false);
+                                createThreadCard(document.getData().toString(),0xffffffff,true);
                             }
                         } else {
                             Log.d(TAG, "Error getting documents: ", task.getException());
@@ -406,10 +407,10 @@ public class PostActivity extends AppCompatActivity {
     private void postThread(String userTopic, String userInput, String  displayName, String TrainThreadLine)
     {
         Map<String,Object> data =  new HashMap<>();
-        data.put("Topic: ", userTopic);
-        data.put("Comment: ", userInput);
-        data.put("UserName: ", displayName);
-        data.put("Thread: ", TrainThreadLine);
+        data.put("UserName", displayName);
+        data.put("Thread", userInput);
+
+
 
         fStore.collection(TrainThreadLine)
                 .add(data)
@@ -431,33 +432,37 @@ public class PostActivity extends AppCompatActivity {
     }
 
     public void createThreadCard(String text, int lineColor, boolean clickable){
+        text = text.substring(1,text.length()-1);
+        if(!text.isEmpty()){
+            text = text.replace("=",": ");
+            Drawable drawable = ResourcesCompat.getDrawable(this.getResources(), R.drawable.square, null);
+            drawable.setColorFilter(lineColor, PorterDuff.Mode.MULTIPLY);
+            TextView textView = new TextView(this);
+            textView.setLayoutParams(params);
+            textView.setText(text);
+            textView.setPadding(20,30,0,30);
+            textView.setBackgroundResource(R.drawable.card_shadow);
+            textView.setTypeface(Typeface.create("sans-serif-medium",Typeface.NORMAL));
+            textView.setCompoundDrawablesWithIntrinsicBounds(null, null, drawable, null);
+            textView.setTextColor(0xff4f4f4f);
+            textView.setTextSize(20);
+            textView.setClickable(clickable);
+            if(clickable){
 
-        Drawable drawable = ResourcesCompat.getDrawable(this.getResources(), R.drawable.square, null);
-        drawable.setColorFilter(lineColor, PorterDuff.Mode.MULTIPLY);
-        TextView textView = new TextView(this);
-        textView.setLayoutParams(params);
-        textView.setText(text);
-        textView.setPadding(20,30,0,30);
-        textView.setBackgroundResource(R.drawable.card_shadow);
-        textView.setTypeface(Typeface.create("sans-serif-medium",Typeface.NORMAL));
-        textView.setCompoundDrawablesWithIntrinsicBounds(null, null, drawable, null);
-        textView.setTextColor(0xff4f4f4f);
-        textView.setTextSize(20);
-        textView.setClickable(clickable);
-        if(clickable){
-
-            textView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    // text gets passed through to the new activity so the new activity can choose
-                    // what to display
+                textView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        // text gets passed through to the new activity so the new activity can choose
+                        // what to display
+                        //linearLayout.removeAllViews();
 
 
-                }
-            });
+                    }
+                });
+            }
+
+            linearLayout.addView(textView);
         }
-
-        linearLayout.addView(textView);
     }
 
 
