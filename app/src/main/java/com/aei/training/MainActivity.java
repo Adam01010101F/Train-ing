@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
         if(mFirebaseAuth.getCurrentUser() != null)
         {
             //testing creation of threads
-            Intent intent = new Intent(MainActivity.this, ThreadStartActivity.class);
+            Intent intent = new Intent(MainActivity.this, LineSelectActivity.class);
             startActivity(intent);
         }
         forgotPass.setOnClickListener(new View.OnClickListener() {

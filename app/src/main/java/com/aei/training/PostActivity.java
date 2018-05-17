@@ -30,7 +30,7 @@ public class PostActivity extends AppCompatActivity {
     private Button genThread;
     private Button queryButton;
     private FloatingActionButton postButton;
-    private String name;
+    private String lineName;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -41,11 +41,8 @@ public class PostActivity extends AppCompatActivity {
 //        genThread = findViewById(R.id.genThread);
         postButton = findViewById(R.id.AddPost);
 //        queryButton = findViewById(R);
-        Intent myCall = getIntent();
-        Bundle bundle = myCall.getExtras();
-
-        //should retreive the string Thread passed by the bundle by using the intent
-        name = bundle.getString("TrainLineThread");
+        //retreives the string Thread passed by the bundle by using the intent
+        lineName = getIntent().getStringExtra("ID");
 
         instaFire();
 
@@ -110,36 +107,54 @@ public class PostActivity extends AppCompatActivity {
         alertDialog.setTitle("Add Post");
         alertDialog.setMessage("");
 
-        final EditText input = new EditText(PostActivity.this);
+        final EditText topicInput = new EditText(PostActivity.this);
+        topicInput.setHint("Enter Topic");
+        topicInput.setTextColor(000000);
+        final EditText comment = new EditText(PostActivity.this);
+        comment.setHint("Enter message");
+        comment.setTextColor(000000);
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.MATCH_PARENT);
-        input.setLayoutParams(lp);
-        alertDialog.setView(input);
+        topicInput.setLayoutParams(lp);
+        comment.setLayoutParams(lp);
+        alertDialog.setView(topicInput);
+        alertDialog.setView(comment);
         alertDialog.setPositiveButton("Post", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {
-
-                String userIn = input.getText().toString();
-
-//                if(userIn.equals(EmailFire)) {
-
+  //assume they have a display name by now
+                String userTopic = topicInput.getText().toString();
+                String userInput = comment.getText().toString();
+                String displayName =  fUser.getDisplayName();
+                String TrainThreadLine = lineName;
                 Toast toast = Toast.makeText(getApplicationContext(), "Posting...", Toast.LENGTH_SHORT);
                 toast.show();
-                try {
+
+                //create a thread
+
+         /*           try {
 //                        fStore.collection("Post").document(threadId).set
+
+                    } catch (Exception e) {
+                        toast = Toast.makeText(getApplicationContext(), "Account was not found", Toast.LENGTH_LONG);
+                        toast.show();
+                    }*/
+        /*        try {
+
 
                 } catch (Exception e) {
                     toast = Toast.makeText(getApplicationContext(), "Account was not found", Toast.LENGTH_LONG);
                     toast.show();
-                }
+                }*/
+
 //                } else {
 //
 //                    Toast toast = Toast.makeText(getApplicationContext(), "FireBase email was not entered, please click delete again", Toast.LENGTH_LONG);
 //                    toast.show();
 //
 //                }
-
             }
+
         });
         alertDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {
@@ -148,6 +163,7 @@ public class PostActivity extends AppCompatActivity {
         });
         AlertDialog b = alertDialog.create();
         b.show();
+
     }
 
     private void displayPosts(){
