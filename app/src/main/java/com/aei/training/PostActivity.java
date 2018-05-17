@@ -35,9 +35,13 @@ import com.google.android.gms.tasks.OnSuccessListener;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreSettings;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -48,7 +52,7 @@ public class PostActivity extends AppCompatActivity {
     private FirebaseAuth fAuth;
     private FirebaseUser fUser;
     private FirebaseFirestore fStore;
-    private Button genThread;
+    private FloatingActionButton genThreadPost;
     private FloatingActionButton queryButton;
     private FloatingActionButton postButton;
     private String lineName;
@@ -84,6 +88,7 @@ public class PostActivity extends AppCompatActivity {
 //        genThread = findViewById(R.id.genThread);
         postButton = findViewById(R.id.AddPost);
         queryButton = findViewById(R.id.query);
+        genThreadPost = findViewById(R.id.allOfALine);
 //        queryButton = findViewById(R);
         //retreives the string Thread passed by the bundle by using the intent
         lineName = getIntent().getStringExtra("ID");
@@ -203,19 +208,17 @@ public class PostActivity extends AppCompatActivity {
                 });
         instaFire();
 
-        //Code for testing
-//        genThread.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                generateTempThread();
-//            }
-//        });
-//        queryButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                queryPosts();
-//            }
-//        });
+
+
+
+        genThreadPost.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                displayPosts();
+            }
+        });
         postButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View V) {
@@ -262,6 +265,8 @@ public class PostActivity extends AppCompatActivity {
 
                 Toast toast = Toast.makeText(getApplicationContext(), "Seaerching...", Toast.LENGTH_SHORT);
                 toast.show();
+                CollectionReference TopicSearched = fStore.collection(lineName);
+                Query query = TopicSearched.whereEqualTo("Topic", search);
 
 
             }
@@ -355,7 +360,21 @@ public class PostActivity extends AppCompatActivity {
     }
 
     private void displayPosts(){
+        fStore.collection(lineName)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Log.d(TAG, document.getId() + " =>" + document.getData());
+                            }
+                        } else {
+                            Log.d(TAG, "Error getting documents: ", task.getException());
+                        }
 
+                    }
+                });
     }
     private void postThread(String userTopic, String userInput, String  displayName, String TrainThreadLine)
     {
