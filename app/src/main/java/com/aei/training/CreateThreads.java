@@ -91,7 +91,8 @@ public class CreateThreads extends AppCompatActivity {
             drawable.setColorFilter(lineColor, PorterDuff.Mode.MULTIPLY);
             TextView textView = new TextView(this.appCompatActivity);
             textView.setLayoutParams(params);
-            textView.setText(text + "i");
+            text = text +"i";
+            textView.setText(text);
             textView.setPadding(20, 30, 0, 30);
             textView.setBackgroundResource(R.drawable.card_shadow);
             textView.setTypeface(Typeface.create("sans-serif-medium", Typeface.NORMAL));
@@ -106,8 +107,11 @@ public class CreateThreads extends AppCompatActivity {
                     public void onClick(View v) {
                         // text gets passed through to the new activity so the new activity can choose
                         // what to display
-                        intent.putExtra("ID", id);
-                        CreateThreads.appCompatActivity.startActivity(intent);
+                        //pretty sure you can pass a string throught intent, this allow us to know which
+                        //thread user selected based on line.
+                  //      Intent intent = new Intent(text, CreateThreads.this, PostActivity.class);
+                        startActivity(intent);
+
 
                     }
                 });
