@@ -20,6 +20,8 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import java.util.Random;
+
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.Espresso.pressBack;
 import static android.support.test.espresso.action.ViewActions.click;
@@ -38,7 +40,7 @@ import static org.hamcrest.Matchers.is;
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
-public class Attempt2 {
+public class Register_Delete_Account {
 
     @Rule
     public ActivityTestRule<MainActivity> mActivityTestRule = new ActivityTestRule<>(MainActivity.class);
@@ -49,10 +51,14 @@ public class Attempt2 {
         // The recommended way to handle such scenarios is to use Espresso idling resources:
         // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
         try {
-            Thread.sleep(100);
+            Thread.sleep(1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+
+        Random rand = new Random(System.currentTimeMillis());
+        String userName = genUser(rand);
+        String password = genPass(rand);
 
         ViewInteraction appCompatTextView = onView(
                 allOf(withId(R.id.textView2), withText("Create Account"),
@@ -68,7 +74,7 @@ public class Attempt2 {
         // The recommended way to handle such scenarios is to use Espresso idling resources:
         // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
         try {
-            Thread.sleep(3000);
+            Thread.sleep(1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -101,7 +107,7 @@ public class Attempt2 {
                                         0),
                                 0),
                         isDisplayed()));
-        appCompatEditText2.perform(replaceText("watsaname1999@gmail.com"), closeSoftKeyboard());
+        appCompatEditText2.perform(replaceText(userName), closeSoftKeyboard());
 
         ViewInteraction appCompatEditText3 = onView(
                 allOf(withId(R.id.edtPassword),
@@ -111,10 +117,10 @@ public class Attempt2 {
                                         0),
                                 1),
                         isDisplayed()));
-        appCompatEditText3.perform(replaceText("apple1"), closeSoftKeyboard());
+        appCompatEditText3.perform(replaceText(password), closeSoftKeyboard());
 
         ViewInteraction appCompatEditText4 = onView(
-                allOf(withId(R.id.edtPassword), withText("apple1"),
+                allOf(withId(R.id.edtPassword), withText(password),
                         childAtPosition(
                                 childAtPosition(
                                         withId(android.R.id.content),
@@ -131,7 +137,7 @@ public class Attempt2 {
                                         0),
                                 2),
                         isDisplayed()));
-        appCompatEditText5.perform(replaceText("apple1"), closeSoftKeyboard());
+        appCompatEditText5.perform(replaceText(password), closeSoftKeyboard());
 
 //        pressBack();
 
@@ -149,41 +155,30 @@ public class Attempt2 {
         // The recommended way to handle such scenarios is to use Espresso idling resources:
         // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
         try {
-            Thread.sleep(5000);
+            Thread.sleep(2000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
 
-//        ViewInteraction checkedTextView = onView(
-//                allOf(withId(R.id.design_menu_item_text),
-//                        childAtPosition(
-//                                childAtPosition(
-//                                        withId(R.id.design_navigation_view),
-//                                        6),
-//                                0),
-//                        isDisplayed()));
-//        checkedTextView.check(matches(isDisplayed()));
+        ViewInteraction toolbar = onView(
+                childAtPosition(
+                        childAtPosition(
+                                withClassName(is("android.widget.ScrollView")),
+                                0),
+                        0));
+        toolbar.perform(scrollTo(), click());
 
-//        ViewInteraction checkedTextView2 = onView(
-//                allOf(withId(R.id.design_menu_item_text),
-//                        childAtPosition(
-//                                childAtPosition(
-//                                        withId(R.id.design_navigation_view),
-//                                        6),
-//                                0),
-//                        isDisplayed()));
-//        checkedTextView2.check(matches(isDisplayed()));
 
-        onView(withId(R.id.drawer_layout)).perform(DrawerActions.open());
-        onView(withId(R.id.nav_view)).check(matches(isOpen()));
-//        onView(withId(R.id.nav_view)).perform(NavigationViewActions.navigateTo(R.id.de));
+//        onView(withId(R.id.drawer_layout)).perform(DrawerActions.open());
+//        onView(withId(R.id.nav_view)).check(matches(isOpen()));
+////        onView(withId(R.id.nav_view)).perform(NavigationViewActions.navigateTo(R.id.de));
         ViewInteraction navigationMenuItemView = onView(
                 allOf(childAtPosition(
                         allOf(withId(R.id.design_navigation_view),
                                 childAtPosition(
                                         withClassName(is("android.support.design.widget.NavigationView")),
                                         0)),
-                        6),
+                        8),
                         isDisplayed()));
         navigationMenuItemView.perform(click());
 
@@ -205,7 +200,7 @@ public class Attempt2 {
                                         0)),
                         0),
                         isDisplayed()));
-        editText2.perform(replaceText("watsaname1999@gmail.com"), closeSoftKeyboard());
+        editText2.perform(replaceText(userName), closeSoftKeyboard());
 
         ViewInteraction appCompatButton2 = onView(
                 allOf(withId(android.R.id.button1), withText("ENTER"),
@@ -220,7 +215,7 @@ public class Attempt2 {
         // The recommended way to handle such scenarios is to use Espresso idling resources:
         // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
         try {
-            Thread.sleep(3000);
+            Thread.sleep(2000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -233,7 +228,7 @@ public class Attempt2 {
                                         0),
                                 0),
                         isDisplayed()));
-        textView2.check(matches(withText("Train-ing")));
+//        textView2.check(matches(withText("Train-ing")));
 
     }
 
@@ -254,5 +249,17 @@ public class Attempt2 {
                         && view.equals(((ViewGroup) parent).getChildAt(position));
             }
         };
+    }
+
+    private String genUser(Random rand){
+        String user;
+        user = rand.nextInt() + "@fake.com";
+        return user;
+    }
+
+    private String genPass(Random rand){
+        String pass;
+        pass = rand.nextInt() + "string";
+        return pass;
     }
 }
