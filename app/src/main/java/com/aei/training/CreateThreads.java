@@ -147,7 +147,7 @@ public class CreateThreads implements NavigationView.OnNavigationItemSelectedLis
         for (int i = 1; i <= 5; i++) {
             //need to create blank documents since FireStore automically creates a collection if it does
             // already exist in FireStore
-            createThread(i, text);
+           // createThread(i, text);
             Drawable drawable = ResourcesCompat.getDrawable(this.appCompatActivity.getResources(), R.drawable.square, null);
             drawable.setColorFilter(lineColor, PorterDuff.Mode.MULTIPLY);
             TextView textView = new TextView(this.appCompatActivity);

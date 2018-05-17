@@ -114,7 +114,8 @@ public class PostActivity extends AppCompatActivity {
         genThreadPost = findViewById(R.id.allOfALine);
 //        queryButton = findViewById(R);
         //retreives the string Thread passed by the bundle by using the intent
-        lineName = getIntent().getStringExtra("ID");
+        //lineName = getIntent().getStringExtra("ID");
+        lineName ="Metro Blue Line (801)1";
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(
                 new NavigationView.OnNavigationItemSelectedListener() {
@@ -230,9 +231,7 @@ public class PostActivity extends AppCompatActivity {
                     }
                 });
         instaFire();
-        for(int i =0; i < 100; i++){
-            createThreadCard("this is a test of the Thread cards",0xffffffff,false);
-        }
+        displayPosts();
 
 
 
@@ -395,6 +394,7 @@ public class PostActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Log.d(TAG, document.getId() + " =>" + document.getData());
+                                createThreadCard(document.getData().toString(),0xffffffff,false);
                             }
                         } else {
                             Log.d(TAG, "Error getting documents: ", task.getException());
