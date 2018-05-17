@@ -14,23 +14,33 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
+
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreSettings;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class PostActivity extends AppCompatActivity {
     Toolbar tb;
@@ -42,6 +52,7 @@ public class PostActivity extends AppCompatActivity {
     private Button queryButton;
     private FloatingActionButton postButton;
     private String lineName;
+    private static final String TAG = "DocSnippets";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -274,6 +285,7 @@ public class PostActivity extends AppCompatActivity {
                 String TrainThreadLine = lineName;
                 Toast toast = Toast.makeText(getApplicationContext(), "Posting...", Toast.LENGTH_SHORT);
                 toast.show();
+                postThread(userTopic, userInput, displayName, TrainThreadLine);
 
                 //create a thread
 
@@ -312,6 +324,32 @@ public class PostActivity extends AppCompatActivity {
     }
 
     private void displayPosts(){
+
+    }
+    private void postThread(String userTopic, String userInput, String  displayName, String TrainThreadLine)
+    {
+        Map<String,Object> data =  new HashMap<>();
+        data.put("Topic: ", userTopic);
+        data.put("Comment: ", userInput);
+        data.put("UserName: ", displayName);
+        data.put("Thread: ", TrainThreadLine);
+
+        fStore.collection(TrainThreadLine)
+                .add(data)
+                .addOnSuccessListener(new OnSuccessListener<DocumentReference>(){
+
+
+                    @Override
+                    public void onSuccess(DocumentReference documentReference) {
+                        Log.d(TAG, "DoucmentSnapshot Written with ID: " + documentReference.getId());
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener(){
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w(TAG, "Error adding document, ", e);
+                    }
+                });
 
     }
 
