@@ -423,6 +423,7 @@ public class PostActivity extends AppCompatActivity {
                     @Override
                     public void onSuccess(DocumentReference documentReference) {
                         Log.d(TAG, "DoucmentSnapshot Written with ID: " + documentReference.getId());
+                        displayPosts();
                     }
                 })
                 .addOnFailureListener(new OnFailureListener(){
