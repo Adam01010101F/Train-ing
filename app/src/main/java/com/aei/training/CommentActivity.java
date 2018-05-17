@@ -440,6 +440,7 @@ public class CommentActivity extends AppCompatActivity {
         if(!text.isEmpty()){
             text = text.replace("=",": ");
             text= text.replace("UserName: ","");
+            
             Drawable drawable = ResourcesCompat.getDrawable(this.getResources(), R.drawable.square, null);
             drawable.setColorFilter(lineColor, PorterDuff.Mode.MULTIPLY);
             TextView textView = new TextView(this);
