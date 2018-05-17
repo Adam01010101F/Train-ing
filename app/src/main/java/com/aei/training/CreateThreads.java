@@ -173,7 +173,7 @@ public class CreateThreads implements NavigationView.OnNavigationItemSelectedLis
                 default: textBuild = textBuild + " in valid";
                 break;
             }
-            final String textBuild2 = text;
+            final String textBuild2 = textBuild;
             textView.setText(textBuild);
 
 
