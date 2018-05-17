@@ -265,10 +265,10 @@ public class PostActivity extends AppCompatActivity {
 
         final EditText topicInput = new EditText(PostActivity.this);
         topicInput.setHint("Enter Topic");
-        topicInput.setTextColor(000000);
+        topicInput.setTextColor(0xff000000);
         final EditText comment = new EditText(PostActivity.this);
         comment.setHint("Enter message");
-        comment.setTextColor(000000);
+        comment.setTextColor(0xff000000);
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.MATCH_PARENT);
