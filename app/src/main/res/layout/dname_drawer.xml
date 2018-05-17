@@ -7,6 +7,7 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true">
 
+
     <!-- Layout to contain contents of main body of screen (drawer will slide over this) -->
     <include
         layout="@layout/activity_edit_account"

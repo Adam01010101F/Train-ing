@@ -6,9 +6,11 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -27,7 +29,8 @@ import java.io.InputStream;
 
 
 public class EditDisplayInfo extends AppCompatActivity{
-
+    Toolbar tb;
+    private DrawerLayout drawerLayout;
     private FirebaseUser user;
     private UserProfileChangeRequest profile;
     private Button upPic;
@@ -42,7 +45,27 @@ public class EditDisplayInfo extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dname_drawer);
+        drawerLayout =findViewById(R.id.drawer_layout);
 
+        tb = (Toolbar) findViewById(R.id.my_toolbar);
+        tb.setLayoutParams(new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT, 168));
+
+        tb.setPopupTheme(R.style.AppTheme);
+        tb.setBackgroundColor(this.getResources().getColor(R.color.colorPrimary));
+        tb.setTitle("This is the title");
+        tb.setVisibility(View.VISIBLE);
+        tb.setLogo(R.drawable.ic_menu);
+        setSupportActionBar(tb);
+
+        tb.setClickable(true);
+        tb.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                drawerLayout.openDrawer(GravityCompat.START);
+
+            }
+        });
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(
                 new NavigationView.OnNavigationItemSelectedListener() {

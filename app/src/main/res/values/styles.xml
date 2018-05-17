@@ -26,5 +26,8 @@
         <item name="android:textSize">15dp</item>
 
     </style>
+    <style name="HeaderBar">
+        <item name="android:background">#000000</item>
+    </style>
 
 </resources>
