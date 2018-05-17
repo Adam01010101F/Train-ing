@@ -391,7 +391,7 @@ public class PostActivity extends AppCompatActivity {
     }
 
     private void displayPosts(){
-
+        linearLayout.removeAllViews();
         fStore.collection(lineName)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -444,6 +444,7 @@ public class PostActivity extends AppCompatActivity {
         text = text.substring(1,text.length()-1);
         if(!text.isEmpty()){
             text = text.replace("=",": ");
+            text= text.replace("UserName: ","");
             Drawable drawable = ResourcesCompat.getDrawable(this.getResources(), R.drawable.square, null);
             drawable.setColorFilter(lineColor, PorterDuff.Mode.MULTIPLY);
             TextView textView = new TextView(this);
