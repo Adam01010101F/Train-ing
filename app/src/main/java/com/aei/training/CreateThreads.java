@@ -58,15 +58,18 @@ public class CreateThreads extends AppCompatActivity {
         this.appCompatActivity =appCompatActivity;
 
 
+
+
+        scrollView = new ScrollView(this.appCompatActivity);
         params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         params.setMargins(0,0,0,0);
 
         linearLayout = new LinearLayout(this.appCompatActivity);
         linearLayout.setLayoutParams(params);
         linearLayout.setOrientation(LinearLayout.VERTICAL);
-        scrollView = new ScrollView(this.appCompatActivity);
-        scrollView.addView(linearLayout);
 
+        scrollView.addView(linearLayout);
+        this.appCompatActivity.setContentView(scrollView);
         instaFire();
     }
 
