@@ -251,7 +251,7 @@ public class PostActivity extends AppCompatActivity {
         alertDialog.setMessage("");
         final EditText searchTopic = new EditText(PostActivity.this);
         searchTopic.setHint("Enter Topic");
-        searchTopic.setTextColor(000000);
+        searchTopic.setTextColor(0xff000000);
 
         alertDialog.setView(searchTopic);
         alertDialog.setPositiveButton("Search", new DialogInterface.OnClickListener() {
