@@ -19,13 +19,13 @@ import retrofit2.Response;
 
 public class ThreadStartActivity extends AppCompatActivity {
 
-    private CardDisplayLayout cardDisplayLayout;
+    private CreateThreads createThreads;
     private MetroRetriever metroRetriever;
 
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        cardDisplayLayout = new CardDisplayLayout(this, new Intent(ThreadStartActivity.this, CreateThreads.class));
+        createThreads = new CreateThreads(this, new Intent(ThreadStartActivity.this, CreateThreads.class));
         metroRetriever= new MetroRetriever();
 
         handleLines();
@@ -46,7 +46,7 @@ public class ThreadStartActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<TrainList> call, Throwable t) {
-                cardDisplayLayout.createCardTextView("Nothing To Display",0xffffffff,false,null);
+                createThreads.createThreads("Nothing To Display",0xffffffff,false,null);
             }
         };
         metroRetriever.getLine(callback);
@@ -59,13 +59,13 @@ public class ThreadStartActivity extends AppCompatActivity {
 
                 String color = response.body().getBg_color();
                 int clr = (int)Long.parseLong(color.replace("#","ff").toUpperCase(),16);
-                cardDisplayLayout.createCardTextView(trainLine.getDisplay_name(),clr, true,trainLine.getId());
+                createThreads.createThreads(trainLine.getDisplay_name(),clr, true,trainLine.getId());
 
             }
 
             @Override
             public void onFailure(Call<Color> call, Throwable t) {
-                cardDisplayLayout.createCardTextView("Nothing To Display",0xffffffff,false,null);
+                createThreads.createThreads("Nothing To Display",0xffffffff,false,null);
             }
         };
         metroRetriever.getColor(trainLine.getId(), callback);
